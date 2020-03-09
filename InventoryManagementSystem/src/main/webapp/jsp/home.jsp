@@ -22,6 +22,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/add.css" rel="stylesheet">
 </head>
 <body>
 
@@ -54,45 +55,91 @@
 					value="${_csrf.token}" />
 			</form>
 
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item "><a class="nav-link " href="#">Add/update</a>
-				</li>
-				
-			</ul>
-
-
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item"><a class="nav-link " href="#">WareHouse</a>
-				</li>
-
-			</ul>
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item"><a class="nav-link " href="#">Production
-						and Quality</a></li>
-
-			</ul>
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item"><a class="nav-link " href="#">Product
-						Shipping Address</a></li>
-
-			</ul>
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item"><a class="nav-link " href="#">Address
-						List</a></li>
-
-			</ul>
-			<ul class="nav nav-pills a nav-tabblock flex-column">
-				<li class="nav-item"><a class="nav-link"
-					onclick="document.forms['logoutForm'].submit()">Logout</a></li>
-
-			</ul>
-
-			<!-- 
-			<div>
-				<button class="btn btn-lg btn-tabborder btn-tabblock"
-					onclick="document.forms['logoutForm'].submit()">Logout</button>
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link"
+						onclick="document.getElementById('id01').style.display='block'">Add/update</a></li>
+				</ul>
+				<div id="id01" class="w3-modal">
+					<div class="w3-modal-content w3-card-4">
+						<header class="w3-container w3-teal">
+							<span
+								onclick="document.getElementById('id01').style.display='none'"
+								class="w3-button w3-display-topright">&times;</span>
+							<h2>Add Products</h2>
+						</header>
+						<div class="w3-container flex-column">
+							<form name="myForm" action="/action_page.php"
+								onsubmit="return validateForm()" method="post">
+								<table>
+									<tbody>
+										<tr style="height: 55px; width: 540px;">
+											<td>Product Name:</td>
+											<td><input type="text" name="fname"></td>
+										</tr>
+										<tr style="height: 55px; width: 540px;">
+											<td style="width: 250px">Product Description:</td>
+											<td style="padding-top: -77;"><input type="text"
+												name="fname"></td>
+										</tr>
+										<tr style="height: 55px; width: 540px;">
+											<td style="width: 250px">Product Type:</td>
+											<td style="padding-top: -77;"><input type="text"
+												name="fname"></td>
+										</tr>
+										<tr style="height: 55px; width: 540px;">
+											<td style="width: 250px">Product price:</td>
+											<td style="padding-top: -77;"><input type="text"
+												name="fname"></td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<footer class="w3-container w3-teal">
+							<input type="submit" value="Add Product"> <input
+								type="submit" value="Update Product"> <input
+								type="submit" value="Delete Product"> <input
+								type="submit" value="view Product">
+						</footer>
+					</div>
+				</div>
 			</div>
- -->
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link " href="#">WareHouse</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link " href="#">Production
+							and Quality</a></li>
+
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link " href="#">Product
+							Shipping Address</a></li>
+
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link " href="#">Address
+							List</a></li>
+
+				</ul>
+			</div>
+			<div class="container">
+				<ul class="nav nav-pills a nav-tabblock flex-column">
+					<li class="nav-item"><a class="nav-link"
+						onclick="document.forms['logoutForm'].submit()">Logout</a></li>
+
+				</ul>
+			</div>
 		</c:if>
 
 		<footer>

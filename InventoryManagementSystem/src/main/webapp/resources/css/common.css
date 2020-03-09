@@ -70,10 +70,61 @@ body {
 	background-color: #343a40;
 	border-color: #dee2e6
 }
+
 a {
-    color: #c0c0c0;
-    text-decoration: none;
-    background-color: transparent;
-    border-color: #bcbcbc;
-    line-height: 3
+	color: #c0c0c0;
+	text-decoration: none;
+	background-color: transparent;
+	border-color: #bcbcbc;
+	line-height: 3
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-weight: 400;
+	margin: 10px 0;
+	width: auto;
+}
+
+h2 {
+	font-size: 27px;
+}
+
+html {
+	box-sizing: border-box
+}
+
+*, *:before, *:after {
+	box-sizing: inherit
+}
+
+.w3-teal, .w3-hover-teal:hover {
+	color: #fff;
+	background-color: #343a40
+}
+
+html, body {
+	font-family: Verdana, sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+html {
+	overflow-x: hidden
+}
+
+.w3-container, .w3-panel {
+	padding: 0.01em 16px;
+}
+
+.w3-panel {
+	margin-top: 16px;
+	margin-bottom: 16px
+}
+
+.w3-cell-row:before, .w3-cell-row:after, .w3-clear:after, .w3-clear:before,
+	.w3-bar:before, .w3-bar:after {
+	content: "";
+	display: table;
+	clear: both
 }
