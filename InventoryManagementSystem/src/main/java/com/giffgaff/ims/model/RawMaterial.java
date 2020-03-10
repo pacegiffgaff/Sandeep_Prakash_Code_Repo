@@ -7,10 +7,6 @@ import java.util.List;
 @MappedSuperclass
 public class RawMaterial {
 
-    @Id
-    @GeneratedValue()
-    @Column(name="rawmtrl_id")
-    private Long rawMaterialId;
     @Column(name="item_name")
     private String materialName;
     @Column(name="item_price")
@@ -18,26 +14,7 @@ public class RawMaterial {
     @Column(name="quantity")
     private int quantity;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Product> products;
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public RawMaterial(){}
-
-    public Long getRawMaterialId() {
-        return rawMaterialId;
-    }
-
-    public void setRawMaterialId(Long rawMaterialId) {
-        this.rawMaterialId = rawMaterialId;
-    }
 
     public String getMaterialName() {
         return materialName;

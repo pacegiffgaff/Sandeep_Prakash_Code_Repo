@@ -7,11 +7,24 @@ import java.util.List;
 @Table(name="rawmtrl")
 public class RawInput extends RawMaterial{
 
+    @Id
+    @GeneratedValue()
+    @Column(name="rawmtrl_id")
+    private Long rawMaterialId;
+
     @ManyToMany(mappedBy = "products")
     private List<Product> products;
 
     @Column(name="quantity")
     private int quantity;
+
+    public Long getRawMaterialId() {
+        return rawMaterialId;
+    }
+
+    public void setRawMaterialId(Long rawMaterialId) {
+        this.rawMaterialId = rawMaterialId;
+    }
 
     public List<Product> getProducts() {
         return products;
