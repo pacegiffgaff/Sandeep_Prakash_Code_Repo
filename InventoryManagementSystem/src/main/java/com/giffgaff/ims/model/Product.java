@@ -2,75 +2,69 @@ package com.giffgaff.ims.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Log4j
+@Entity
 public class Product {
 
-	private Long prodId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="prod_id")
+	private Long productId;
+	@Column(name="prod_name")
+	private String productName;
 
-	private String prodName;
-
+	@Column(name="prod_desc")
 	private String description;
+	@Column(name="prod_type")
+	private String productType;
 
-	private String prodType;
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+	@JoinTable(name = "product_rawmat")
+	private List<RawInput> rawInputList = new ArrayList<>();
 
-	/**
-	 * @return the prodId
-	 */
-	public Long getProdId() {
-		return prodId;
+	public Long getProductId() {
+		return productId;
 	}
 
-	/**
-	 * @param prodId the prodId to set
-	 */
-	public void setProdId(Long prodId) {
-		this.prodId = prodId;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-	/**
-	 * @return the prodName
-	 */
-	public String getProdName() {
-		return prodName;
+	public String getProductName() {
+		return productName;
 	}
 
-	/**
-	 * @param prodName the prodName to set
-	 */
-	public void setProdName(String prodName) {
-		this.prodName = prodName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param description the description to set
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @return the prodType
-	 */
-	public String getProdType() {
-		return prodType;
+	public String getProductType() {
+		return productType;
 	}
 
-	/**
-	 * @param prodType the prodType to set
-	 */
-	public void setProdType(String prodType) {
-		this.prodType = prodType;
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 
+	public List<RawInput> getRawInputList() {
+		return rawInputList;
+	}
+
+	public void setRawInputList(List<RawInput> rawInputList) {
+		this.rawInputList = rawInputList;
+	}
 }

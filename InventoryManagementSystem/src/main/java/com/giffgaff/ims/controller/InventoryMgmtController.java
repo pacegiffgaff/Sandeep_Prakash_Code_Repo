@@ -51,7 +51,7 @@ public class InventoryMgmtController {
 	/**
 	 * This method is used to delete product data based on the id
 	 * 
-	 * @param id
+	 * @param
 	 * @return
 	 */
 	@DeleteMapping("/product/{prodid}")
@@ -96,7 +96,7 @@ public class InventoryMgmtController {
 	 * Update product date based on the product id
 	 * 
 	 * @param prodid
-	 * @param Product
+	 * @param
 	 * @return
 	 */
 	@PutMapping("/updateProduct/{prodid}")
