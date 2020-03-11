@@ -9,10 +9,13 @@ public class RawMaterial {
 
     @Column(name="item_name")
     private String materialName;
-    @Column(name="item_price")
-    private BigDecimal materialPrice;
+    @Column(name="unit_price")
+    private BigDecimal pricePerUnit;
     @Column(name="quantity")
     private int quantity;
+
+    @Column(name="unit_price")
+    private BigDecimal pricePerQuantity;
 
     public RawMaterial(){}
 
@@ -24,13 +27,6 @@ public class RawMaterial {
         this.materialName = materialName;
     }
 
-    public BigDecimal getMaterialPrice() {
-        return materialPrice;
-    }
-
-    public void setMaterialPrice(BigDecimal materialPrice) {
-        this.materialPrice = materialPrice;
-    }
 
     public int getQuantity() {
         return quantity;
