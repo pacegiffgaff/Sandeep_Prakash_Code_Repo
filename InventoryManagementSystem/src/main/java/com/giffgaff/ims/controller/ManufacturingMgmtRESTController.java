@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-public class ManufacturingMgmtController {
+@RestController("/rest")
+public class ManufacturingMgmtRESTController {
 
     @Autowired
     ManufacturingMgmtService manufacturingMgmtService;
 
     @PostMapping("/rawmaterial")
     public RawMaterial addRawMaterial(@RequestBody RawMaterial rawMaterial) {
-         return manufacturingMgmtService.addRawMaterial(rawMaterial);
+        return manufacturingMgmtService.addRawMaterial(rawMaterial);
     }
 
     @PostMapping("/product")
@@ -37,7 +37,7 @@ public class ManufacturingMgmtController {
 
     @GetMapping("/rawmaterials")
     public List<RawMaterial> getRawMaterials(){
-       return  manufacturingMgmtService.getRawMaterials();
+        return  manufacturingMgmtService.getRawMaterials();
 
     }
 

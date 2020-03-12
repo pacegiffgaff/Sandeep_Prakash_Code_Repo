@@ -16,7 +16,7 @@ public interface ManufacturingMgmtService {
 
     List<Product> getProducts();
 
-    Stock manufactureAllProductsinLot(Integer lot);
+    Integer manufactureAllProductsinLot(Integer lot);
 
     Stock manufactureProductInLot(Product product, Integer lot);
 }

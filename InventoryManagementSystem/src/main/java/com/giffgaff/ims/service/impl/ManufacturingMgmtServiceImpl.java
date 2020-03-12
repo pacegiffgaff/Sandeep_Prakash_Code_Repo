@@ -45,12 +45,12 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
     }
 
     @Override
-    public Stock manufactureAllProductsinLot(Integer lot) {
+    public Integer manufactureAllProductsinLot(Integer lot) {
         if(stockDAO.count()!=0)
         {
             return stockDAO.manufactureProductsInLot(lot);
         }
-       return new Stock();
+       return 0;
     }
 
     @Override
@@ -63,7 +63,10 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
             stock.setTotalCurrentStock(lot);
             return stockDAO.save(stock);
         }
-        return  stock= stockDAO.manufactureProductInLot(product,lot);
+             stockDAO.manufactureProductInLot(product,lot);
+        return  stockDAO.findByProduct(product);
     }
+
+
 
 }

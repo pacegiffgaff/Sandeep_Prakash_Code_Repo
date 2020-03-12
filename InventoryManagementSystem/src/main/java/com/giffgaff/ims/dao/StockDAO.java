@@ -10,11 +10,11 @@ import org.springframework.data.repository.query.Param;
 public interface StockDAO extends JpaRepository<Stock, Long> {
     @Modifying
     @Query("update Stock stk set stk.totalCurrentStock = stk.totalCurrentStock +  :lot , stk.historyTotal = stk.historyTotal +  :lot")
-    Stock manufactureProductsInLot(@Param("lot") Integer lot);
+    Integer manufactureProductsInLot(@Param("lot") Integer lot);
 
     public Stock findByProduct(Product product);
 
     @Modifying
     @Query("update Stock stk set stk.totalCurrentStock =   :lot , stk.historyTotal =  :lot where stk.product= :product")
-    Stock manufactureProductInLot(@Param("product")Product product, @Param("lot") Integer lot);
+    Integer manufactureProductInLot(@Param("product")Product product, @Param("lot") Integer lot);
 }
