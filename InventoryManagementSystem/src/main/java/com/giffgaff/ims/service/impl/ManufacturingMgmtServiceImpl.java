@@ -43,9 +43,7 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Override
     public List<Product> getProducts() {
-        List<Product> productList = new ArrayList<>();
-         productDAO.findAll().forEach(product->productList.add(product));
-        return productList;
+         return productDAO.findAll();
     }
 
     @Override
