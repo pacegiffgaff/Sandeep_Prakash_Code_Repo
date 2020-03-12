@@ -1,6 +1,5 @@
 package com.giffgaff.ims.controller;
 
-import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.ManufacturingMgmtService;
@@ -46,8 +45,10 @@ public class ManufacturingMgmtController {
         return  manufacturingMgmtService.getProducts();
     }
 
-    @PostMapping
-    public 
+    @PostMapping("/stock/{lot}")
+    public int manufactureProductsinLotofEachProduct(@PathVariable int lot){
+        return manufacturingMgmtService.manufactureProducts(lot);
+    }
 
     @PutMapping("/rawmaterial/{id}")
     public RawMaterial updateRawMaterial(long id) {
