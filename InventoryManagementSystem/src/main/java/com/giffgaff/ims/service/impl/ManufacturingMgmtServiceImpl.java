@@ -1,9 +1,8 @@
 package com.giffgaff.ims.service.impl;
 
-import com.giffgaff.ims.dao.ManufacturingMgmtDao;
+import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.ProductDAO;
 import com.giffgaff.ims.dao.StockDAO;
-import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.model.Stock;
@@ -11,14 +10,13 @@ import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Autowired
-    ManufacturingMgmtDao manufacturingMgmtDao;
+    RawMaterialDao rawMaterialDao;
 
     @Autowired
     ProductDAO productDAO;
@@ -28,12 +26,12 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Override
     public RawMaterial addRawMaterial(RawMaterial rawMaterial) {
-        return manufacturingMgmtDao.save(rawMaterial);
+        return rawMaterialDao.save(rawMaterial);
     }
 
     @Override
     public List<RawMaterial> getRawMaterials() {
-       return (List<RawMaterial>) manufacturingMgmtDao.findAll();
+       return (List<RawMaterial>) rawMaterialDao.findAll();
     }
 
     @Override
