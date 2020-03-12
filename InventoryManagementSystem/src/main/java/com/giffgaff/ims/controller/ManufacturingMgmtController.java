@@ -2,6 +2,7 @@ package com.giffgaff.ims.controller;
 
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
+import com.giffgaff.ims.model.Stock;
 import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,16 +46,20 @@ public class ManufacturingMgmtController {
         return  manufacturingMgmtService.getProducts();
     }
 
-    @PostMapping("/stock/{lot}")
-    public int manufactureProductsinLotofEachProduct(@PathVariable int lot){
-        return manufacturingMgmtService.manufactureProducts(lot);
+    @PutMapping("/stocks/{lot}")
+    public Stock manufactureAllProductsinLot(@PathVariable int lot){
+        return manufacturingMgmtService.manufactureAllProductsinLot(lot);
+    }
+
+    @PutMapping("/stock/{lot}")
+    public Stock manufactureAllProductInLot(@RequestBody Product product, @PathVariable Integer lot){
+        return manufacturingMgmtService.manufactureProductInLot(product,lot);
     }
 
     @PutMapping("/rawmaterial/{id}")
     public RawMaterial updateRawMaterial(long id) {
         return null;
     }
-
 
 
 }

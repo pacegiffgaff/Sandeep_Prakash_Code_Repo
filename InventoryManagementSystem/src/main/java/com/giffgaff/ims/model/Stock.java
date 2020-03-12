@@ -14,7 +14,7 @@ public class Stock {
     Product product;
 
     @Column(name = "curr_stock")
-    private BigDecimal totalCurrentStock;
+    private long totalCurrentStock;
 
     @Column(name = "hist_total")
     private long historyTotal;
@@ -37,11 +37,11 @@ public class Stock {
         this.product = product;
     }
 
-    public BigDecimal getTotalCurrentStock() {
+    public long getTotalCurrentStock() {
         return totalCurrentStock;
     }
 
-    public void setTotalCurrentStock(BigDecimal totalCurrentStock) {
+    public void setTotalCurrentStock(long totalCurrentStock) {
         this.totalCurrentStock = totalCurrentStock;
     }
 

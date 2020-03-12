@@ -2,6 +2,7 @@ package com.giffgaff.ims.service;
 
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
+import com.giffgaff.ims.model.Stock;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface ManufacturingMgmtService {
 
     List<Product> getProducts();
 
-    int manufactureProducts(int lot);
+    Stock manufactureAllProductsinLot(Integer lot);
+
+    Stock manufactureProductInLot(Product product, Integer lot);
 }
