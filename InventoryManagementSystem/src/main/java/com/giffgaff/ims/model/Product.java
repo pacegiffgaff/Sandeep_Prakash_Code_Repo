@@ -1,32 +1,42 @@
 package com.giffgaff.ims.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(
+			strategy= GenerationType.AUTO,
+			generator="native"
+	)
+	@GenericGenerator(
+			name = "native",
+			strategy = "native"
+	)
 	@Column(name="prod_id")
 	private Long productId;
+
 	@Column(name="prod_name")
+
 	private String productName;
 
 	@Column(name="prod_desc")
 	private String description;
+
 	@Column(name="prod_type")
 	private String productType;
 
-	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-	@JoinTable(name = "product_rawmat")
-	private List<RawInput> rawInputList = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "prod_id")
+	private List<ProductComponent> productComponentList = new ArrayList<>();
+
+	public Product() {	}
 
 	public Long getProductId() {
 		return productId;
@@ -60,11 +70,11 @@ public class Product {
 		this.productType = productType;
 	}
 
-	public List<RawInput> getRawInputList() {
-		return rawInputList;
+	public List<ProductComponent> getProductComponentList() {
+		return productComponentList;
 	}
 
-	public void setRawInputList(List<RawInput> rawInputList) {
-		this.rawInputList = rawInputList;
+	public void setProductComponentList(List<ProductComponent> productComponentList) {
+		this.productComponentList = productComponentList;
 	}
 }

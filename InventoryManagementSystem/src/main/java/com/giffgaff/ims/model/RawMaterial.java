@@ -1,38 +1,43 @@
 package com.giffgaff.ims.model;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
+import org.hibernate.annotations.GenericGenerator;
 
-@MappedSuperclass
+import javax.persistence.*;
+
+@Entity
+@Table(name="raw_material")
 public class RawMaterial {
 
-    @Column(name="item_name")
-    private String materialName;
-    @Column(name="unit_price")
-    private BigDecimal pricePerUnit;
-    @Column(name="quantity")
-    private int quantity;
+    @Id
+    @GeneratedValue(
+            strategy= GenerationType.AUTO,
+            generator="native"
+    )
+    @GenericGenerator(
+            name = "native",
+            strategy = "native"
+    )
+    @Column(name = "rawMaterial_id")
+    private Long rawMaterialId;
 
-    @Column(name="unit_price")
-    private BigDecimal pricePerQuantity;
+    @Column(name = "material_name")
+    private String rawMaterialName;
 
     public RawMaterial(){}
 
-    public String getMaterialName() {
-        return materialName;
+    public Long getRawMaterialId() {
+        return rawMaterialId;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setRawMaterialId(Long rawMaterialId) {
+        this.rawMaterialId = rawMaterialId;
     }
 
-
-    public int getQuantity() {
-        return quantity;
+    public String getRawMaterialName() {
+        return rawMaterialName;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setRawMaterialName(String rawMaterialName) {
+        this.rawMaterialName = rawMaterialName;
     }
 }
