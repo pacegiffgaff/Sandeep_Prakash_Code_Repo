@@ -61,10 +61,6 @@ public class ManufacturingMgmtController {
         return null;
     }
 
-    /*@GetMapping("/stocks")
-    public List<Product> getStock(){
-        return  manufacturingMgmtService.getProducts();
-    }
-*/
+
 
 }
