@@ -1,7 +1,7 @@
 package com.giffgaff.ims.service.impl;
 
+
 import com.giffgaff.ims.dao.InventoryDAO;
-import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.ProductDAO;
 import com.giffgaff.ims.dao.StockDAO;
 import com.giffgaff.ims.model.Inventory;
@@ -12,13 +12,12 @@ import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
-    @Autowired
-    RawMaterialDao rawMaterialDao;
 
     @Autowired
     ProductDAO productDAO;
@@ -31,12 +30,12 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Override
     public RawMaterial addRawMaterial(RawMaterial rawMaterial) {
-        return rawMaterialDao.save(rawMaterial);
+        return null;
     }
 
     @Override
     public List<RawMaterial> getRawMaterials() {
-       return (List<RawMaterial>) rawMaterialDao.findAll();
+        return null;
     }
 
     @Override
@@ -44,9 +43,31 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
         return productDAO.save(product);
     }
 
+	@Override
+	public List<Product> getProducts() {
+
+		List<Product> prodList = productDAO.findAll();
+		for (Product product : prodList) {
+			System.out.println("Product List : " + " " + product.getProductId() + " " + product.getProductName() + " "
+					+ product.getProductComponentList().size() + " " + product.getSpecifications());
+		}
+
+		return prodList;
+	}
+
     @Override
-    public List<Product> getProducts() {
-         return productDAO.findAll();
+    public List<Stock> getStockOfAllProducts() {
+        return null;
+    }
+
+    @Override
+    public List<Inventory> getInventoryOfAllrawMaterials() {
+        return null;
+    }
+
+    @Override
+    public int manufactureProducts(int lot) {
+        return 0;
     }
 
     @Override
@@ -55,7 +76,7 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
         {
             return stockDAO.manufactureProductsInLot(lot);
         }
-       return 0;
+        return 0;
     }
 
     @Override
@@ -68,19 +89,8 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
             stock.setTotalCurrentStock(lot);
             return stockDAO.save(stock);
         }
-             stockDAO.manufactureProductInLot(product,lot);
-            inventoryDAO.updateRawmaterialonProduction(lot);
+        stockDAO.manufactureProductInLot(product,lot);
+        inventoryDAO.updateRawmaterialonProduction(lot);
         return  stockDAO.findByProduct(product);
     }
-
-    @Override
-    public List<Stock> getStockOfAllProducts() {
-        return stockDAO.findAll();
-    }
-
-    @Override
-    public List<Inventory> getInventoryOfAllrawMaterials() {
-        return inventoryDAO.findAll();
-    }
-
 }

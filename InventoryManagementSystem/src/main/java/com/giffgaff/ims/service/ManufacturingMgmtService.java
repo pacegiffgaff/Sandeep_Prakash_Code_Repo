@@ -24,4 +24,6 @@ public interface ManufacturingMgmtService {
     List<Stock> getStockOfAllProducts();
 
     List<Inventory> getInventoryOfAllrawMaterials();
+
+    int manufactureProducts(int lot);
 }

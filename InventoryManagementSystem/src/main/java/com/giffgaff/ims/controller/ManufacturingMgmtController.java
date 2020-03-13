@@ -2,14 +2,15 @@ package com.giffgaff.ims.controller;
 
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
-import com.giffgaff.ims.model.Stock;
 import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ManufacturingMgmtController {
 
     @Autowired
@@ -35,25 +36,24 @@ public class ManufacturingMgmtController {
         return new RawMaterial();
     }
 
-    @GetMapping("/rawmaterials")
-    public List<RawMaterial> getRawMaterials(){
-       return  manufacturingMgmtService.getRawMaterials();
+	@RequestMapping("/rawmaterials")
+	public String getRawMaterials(Model model) {
+		model.addAttribute("rawmaterials", manufacturingMgmtService.getProducts());
 
-    }
+		return "rawmaterials";
+	}
 
-    @GetMapping("/products")
-    public List<Product> getProducts(){
-        return  manufacturingMgmtService.getProducts();
-    }
+	@RequestMapping("/products")
+	public String getProducts(Model model) {
 
-    @PutMapping("/stocks/{lot}")
-    public Integer manufactureAllProductsinLot(@PathVariable int lot){
-        return manufacturingMgmtService.manufactureAllProductsinLot(lot);
-    }
+		model.addAttribute("products", manufacturingMgmtService.getProducts());
 
-    @PutMapping("/stock/{lot}")
-    public Stock manufactureAllProductInLot(@RequestBody Product product, @PathVariable Integer lot){
-        return manufacturingMgmtService.manufactureProductInLot(product,lot);
+		return "products";
+	}
+
+    @PostMapping("/stock/{lot}")
+    public int manufactureProductsinLotofEachProduct(@PathVariable int lot){
+        return manufacturingMgmtService.manufactureProducts(lot);
     }
 
     @PutMapping("/rawmaterial/{id}")
@@ -61,10 +61,6 @@ public class ManufacturingMgmtController {
         return null;
     }
 
-    /*@GetMapping("/stocks")
-    public List<Product> getStock(){
-        return  manufacturingMgmtService.getProducts();
-    }
-*/
+
 
 }

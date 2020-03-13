@@ -10,33 +10,29 @@ import java.util.List;
 public class Product {
 
 	@Id
-	@GeneratedValue(
-			strategy= GenerationType.AUTO,
-			generator="native"
-	)
-	@GenericGenerator(
-			name = "native",
-			strategy = "native"
-	)
-	@Column(name="prod_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(name = "prod_id")
 	private Long productId;
 
-	@Column(name="prod_name")
-
+	@Column(name = "prod_name")
 	private String productName;
 
-	@Column(name="prod_desc")
+	@Column(name = "prod_desc")
 	private String description;
 
-	@Column(name="prod_type")
+	@Column(name = "prod_type")
 	private String productType;
-
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "prod_id")
 	private List<ProductComponent> productComponentList = new ArrayList<>();
 
-	public Product() {	}
+	@Column(name = "prod_specification")
+	private String specifications;
+
+	public Product() {
+	}
 
 	public Long getProductId() {
 		return productId;
@@ -77,4 +73,13 @@ public class Product {
 	public void setProductComponentList(List<ProductComponent> productComponentList) {
 		this.productComponentList = productComponentList;
 	}
+
+	public String getSpecifications() {
+		return specifications;
+	}
+
+	public void setSpecifications(String specifications) {
+		this.specifications = specifications;
+	}
+
 }
