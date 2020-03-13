@@ -4,6 +4,7 @@ import com.giffgaff.ims.dao.InventoryDAO;
 import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.ProductDAO;
 import com.giffgaff.ims.dao.StockDAO;
+import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.model.Stock;
@@ -70,6 +71,16 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
              stockDAO.manufactureProductInLot(product,lot);
             inventoryDAO.updateRawmaterialonProduction(lot);
         return  stockDAO.findByProduct(product);
+    }
+
+    @Override
+    public List<Stock> getStockOfAllProducts() {
+        return stockDAO.findAll();
+    }
+
+    @Override
+    public List<Inventory> getInventoryOfAllrawMaterials() {
+        return inventoryDAO.findAll();
     }
 
 }

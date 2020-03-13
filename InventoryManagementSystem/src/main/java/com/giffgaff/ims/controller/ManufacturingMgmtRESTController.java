@@ -1,5 +1,6 @@
 package com.giffgaff.ims.controller;
 
+import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.model.Stock;
@@ -61,6 +62,14 @@ public class ManufacturingMgmtRESTController {
     public RawMaterial updateRawMaterial(long id) {
         return null;
     }
+    @GetMapping("/stocks")
+    public List<Stock> getStockofAllProducts(){
+        return  manufacturingMgmtService.getStockOfAllProducts();
+    }
 
+    @GetMapping("/inventory")
+    public List<Inventory> getInventoryOfRawMaterials(){
+        return  manufacturingMgmtService.getInventoryOfAllrawMaterials();
+    }
 
 }

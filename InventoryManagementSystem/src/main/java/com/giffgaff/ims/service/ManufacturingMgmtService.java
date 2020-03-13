@@ -1,5 +1,6 @@
 package com.giffgaff.ims.service;
 
+import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.model.Stock;
@@ -19,4 +20,8 @@ public interface ManufacturingMgmtService {
     Integer manufactureAllProductsinLot(Integer lot);
 
     Stock manufactureProductInLot(Product product, Integer lot);
+
+    List<Stock> getStockOfAllProducts();
+
+    List<Inventory> getInventoryOfAllrawMaterials();
 }
