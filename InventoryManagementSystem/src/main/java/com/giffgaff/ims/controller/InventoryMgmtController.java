@@ -9,6 +9,4 @@ public class InventoryMgmtController {
 	private static final Logger logger = Logger.getLogger(InventoryMgmtController.class);
 
 
-
-
 }
