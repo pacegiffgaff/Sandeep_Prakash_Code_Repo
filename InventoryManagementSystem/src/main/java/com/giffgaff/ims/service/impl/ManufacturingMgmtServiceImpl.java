@@ -36,7 +36,7 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Override
     public List<RawMaterial> getRawMaterials() {
-       return (List<RawMaterial>) rawMaterialDao.findAll();
+        return (List<RawMaterial>) rawMaterialDao.findAll();
     }
 
     @Override
@@ -46,31 +46,30 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Override
     public List<Product> getProducts() {
-         return productDAO.findAll();
+        return productDAO.findAll();
     }
 
     @Override
     public Integer manufactureAllProductsinLot(Integer lot) {
-        if(stockDAO.count()!=0)
-        {
+        if (stockDAO.count() != 0) {
             return stockDAO.manufactureProductsInLot(lot);
         }
-       return 0;
+        return 0;
     }
 
     @Override
     public Stock manufactureProductInLot(Product product, Integer lot) {
-        Stock stock= stockDAO.findByProduct(product);
-        if(stock== null){
+        Stock stock = stockDAO.findByProduct(product);
+        if (stock == null) {
             stock = new Stock();
             stock.setProduct(product);
             stock.setHistoryTotal(lot);
             stock.setTotalCurrentStock(lot);
             return stockDAO.save(stock);
         }
-        stockDAO.manufactureProductInLot(product,lot);
+        stockDAO.manufactureProductInLot(product, lot);
         inventoryDAO.updateRawmaterialonProduction(lot);
-        return  stockDAO.findByProduct(product);
+        return stockDAO.findByProduct(product);
     }
 
     @Override

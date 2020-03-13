@@ -51,10 +51,6 @@ public class ManufacturingMgmtController {
 		return "products";
 	}
 
-    @PostMapping("/stock/{lot}")
-    public int manufactureProductsinLotofEachProduct(@PathVariable int lot){
-        return manufacturingMgmtService.manufactureProducts(lot);
-    }
 
     @PutMapping("/rawmaterial/{id}")
     public RawMaterial updateRawMaterial(long id) {
