@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/rest")
+@RestController
+@RequestMapping(value="/rest")
 public class ManufacturingMgmtRESTController {
 
     @Autowired

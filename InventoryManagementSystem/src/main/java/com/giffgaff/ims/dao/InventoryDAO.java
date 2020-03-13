@@ -15,7 +15,7 @@ import com.giffgaff.ims.model.Product;
 public interface InventoryDAO extends JpaRepository<Inventory, Long> {
 
     @Modifying
-    @Query("update Inventory inv set inv.totalCurrentStock = inv.totalCurrentStock -  :lot , inv.historyTotal = inv.historyTotal -  :lot")
+    @Query("update Inventory inv set inv.totalCurrentInventory = inv.totalCurrentInventory -  :lot , inv.historyTotal = inv.historyTotal -  :lot")
     Integer updateRawmaterialonProduction(@Param("lot") Integer lot);
 
 }
