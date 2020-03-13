@@ -1,5 +1,6 @@
 package com.giffgaff.ims.service.impl;
 
+import com.giffgaff.ims.dao.InventoryDAO;
 import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.ProductDAO;
 import com.giffgaff.ims.dao.StockDAO;
@@ -23,6 +24,9 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
 
     @Autowired
     StockDAO stockDAO;
+
+    @Autowired
+    InventoryDAO inventoryDAO;
 
     @Override
     public RawMaterial addRawMaterial(RawMaterial rawMaterial) {
@@ -64,9 +68,8 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
             return stockDAO.save(stock);
         }
              stockDAO.manufactureProductInLot(product,lot);
+            inventoryDAO.updateRawmaterialonProduction(lot);
         return  stockDAO.findByProduct(product);
     }
-
-
 
 }
