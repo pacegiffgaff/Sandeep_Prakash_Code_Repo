@@ -17,10 +17,10 @@ public class StockMgmtController {
 	StockMgmtService stockMgmtService;
 
 	/**
-	 * retreive All stock from database
+	 * Display stock  details from database
 	 * 
 	 * @param Model
-	 * @return allStock.jsp
+	 * @return Stocks.jsp
 	 */
 	@RequestMapping("/stocks")
 	public String getAllStock(Model model) {
