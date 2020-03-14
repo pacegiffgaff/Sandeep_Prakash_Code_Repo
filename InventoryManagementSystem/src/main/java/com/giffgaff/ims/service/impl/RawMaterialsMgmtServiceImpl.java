@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.giffgaff.ims.dao.InventoryDAO;
+import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.RawMaterialMgmtDAO;
 import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.Product;
+import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.RawMaterialsMgmtService;
 
 @Component
@@ -22,6 +24,9 @@ public class RawMaterialsMgmtServiceImpl implements RawMaterialsMgmtService {
 
 	@Autowired
 	RawMaterialMgmtDAO rawMaterialMgmtDAO;
+
+	@Autowired
+	RawMaterialDao rawMaterialDao;
 
 	@Override
 	public List<Product> getRawMaterialsWithSpecs() {
@@ -44,5 +49,13 @@ public class RawMaterialsMgmtServiceImpl implements RawMaterialsMgmtService {
 					+ inventory.getTotalCurrentInventory());
 		}
 		return trackRawMaterialList;
+	}
+
+	@Override
+	public RawMaterial addRawMaterial(RawMaterial rawMaterial) {
+		RawMaterial rawObj = rawMaterialDao.save(rawMaterial);
+		logger.info("Raw Material Id :" + rawObj.getRawMaterialId() + " \n Raw Material Name"
+				+ rawObj.getRawMaterialName());
+		return rawObj;
 	}
 }

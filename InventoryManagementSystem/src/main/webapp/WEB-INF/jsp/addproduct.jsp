@@ -13,7 +13,7 @@
 <body>
 
 	<h3>Please Enter Product Details</h3>
-	<form:form method="POST" action="/addProduct" modelAttribute="product">
+	<form:form method="POST" action="/addproduct" modelAttribute="product">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>

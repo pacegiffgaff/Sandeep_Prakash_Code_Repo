@@ -33,11 +33,11 @@ table, th, td {
 					<th>Product Specification</th>
 				</tr>
 				<tr>
-					<td>${productView.productId}</td>
-					<td>${productView.productName}</td>
-					<td>${productView.description}</td>
-					<td>${productView.productType}</td>
-					<td>${productView.specifications}</td>
+					<td>${productview.productId}</td>
+					<td>${productview.productName}</td>
+					<td>${productview.description}</td>
+					<td>${productview.productType}</td>
+					<td>${productview.specifications}</td>
 				</tr>
 			</table>
 		</div>

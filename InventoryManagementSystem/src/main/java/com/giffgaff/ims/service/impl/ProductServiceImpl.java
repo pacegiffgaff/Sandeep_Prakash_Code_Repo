@@ -19,11 +19,23 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDAO productDAO;
 
-	public Product addProduct(Product product, Model model) {
+	public Product addProduct(Product product) {
 		Product productObj = productDAO.save(product);
 			logger.info("Product ID :" + productObj.getProductId() + "Product name" + productObj.getProductName()
 					+ "description" + productObj.getDescription() + "Product Type" + productObj.getProductType()
 					+ "Product Specifications" + productObj.getSpecifications());
 		return productObj;
+	}
+
+	@Override
+	public List<Product> viewAllProducts() {
+		List<Product> productList = productDAO.findAll();
+		for(Product productObj :productList) {
+			logger.info("Product ID :" + productObj.getProductId() + "Product name" + productObj.getProductName()
+			+ "description" + productObj.getDescription() + "Product Type" + productObj.getProductType()
+			+ "Product Specifications" + productObj.getSpecifications());
+		}
+		
+		return productList;
 	}
 }

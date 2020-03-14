@@ -25,23 +25,35 @@ public class ProductController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ModelAndView showForm() {
-		return new ModelAndView("addProduct", "product", new Product());
+		return new ModelAndView("addproduct", "product", new Product());
 	}
 
-	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
-	public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			return "error";
-		}
-//        model.addAttribute("productName", product.getProductName());
-//        model.addAttribute("description", product.getDescription());
-//        model.addAttribute("productType", product.getProductType());
-//        model.addAttribute("specifications", product.getSpecifications());
-//        
+	/**
+	 * Product information will be stored in Database
+	 * 
+	 * @param product
+	 * @param result
+	 * @param model
+	 * @return productView.jsp
+	 */
+	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
+	public String addProduct(@ModelAttribute("product") Product product, Model model) {
 		logger.info("Product name" + product.getProductName() + "description" + product.getDescription()
 				+ "Product Type" + product.getProductType() + "Product Specifications" + product.getSpecifications());
-		model.addAttribute("productView",productService.addProduct(product, model));
+		model.addAttribute("productview", productService.addProduct(product));
 
-		return "productView";
+		return "productview";
+	}
+
+	/**
+	 * Display All product information
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/viewallproducts")
+	public String viewAllProducts(Model model) {
+		logger.info("Dispaly All Products");
+		model.addAttribute("viewallproducts", productService.viewAllProducts());
+		return "viewallproducts";
 	}
 }
