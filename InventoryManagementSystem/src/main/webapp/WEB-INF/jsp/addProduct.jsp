@@ -14,6 +14,7 @@
 
 	<h3>Please Enter Product Details</h3>
 	<form:form method="POST" action="/addProduct" modelAttribute="product">
+		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
 				<td><form:label path="productName">Product Name</form:label></td>
@@ -23,28 +24,23 @@
 				<td><form:label path="description">Product Description</form:label></td>
 				<td><form:input path="description" /></td>
 			</tr>
+
 			<tr>
-				<td><form:label path="productType">Product Type</form:label></td>
-				<td><form:input path="productType" /></td>
+				<td>Catagory Type :</td>
+				<td><form:select path="productType">
+						<form:option value="NONE" label="--- Select ---" />
+						<form:option value="juice" label="Juice" />
+						<form:option value="milkShakes" label="Milk Shake" />
+						<form:option value="softDrinks" label="Soft Drinks" />
+						<form:option value="tonicWater" label="Tonic Water" />
+						<form:option value="energyDrink" label="Energy Drink" />
+					</form:select></td>
+				<td><form:errors path="productType" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="specifications">Product Specifications</form:label></td>
 				<td><form:input path="specifications" /></td>
 			</tr>
-
-			<tr>
-				<td><form:label path="${productComponentList.quantity}">
-                      Quantity</form:label></td>
-				<td><form:input path="${productComponentList.quantity}" /></td>
-			</tr>
-			<tr>
-				<td><form:label
-						path="${productComponentList.rawMaterial.rawMaterialName}">
-                      Raw Material Name</form:label></td>
-				<td><form:input
-						path="${productComponentList.rawMaterial.rawMaterialName}" /></td>
-			</tr>
-
 
 			<tr>
 				<td><input type="submit" value="Submit" /></td>

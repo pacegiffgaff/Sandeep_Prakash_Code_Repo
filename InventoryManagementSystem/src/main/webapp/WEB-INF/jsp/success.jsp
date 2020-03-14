@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class = "container">
-Raw materials has been successfully stored !!
+Data has been successfully stored !!
 
 </div>
 	<script type="text/javascript"

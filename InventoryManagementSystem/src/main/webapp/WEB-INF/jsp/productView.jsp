@@ -20,25 +20,25 @@ table, th, td {
 <body>
 	<div class="container">
 		<header>
-			<h1>Submitted Product Informatio</h1>
+			<h1>Submitted Product Information</h1>
 		</header>
 		<div class="starter-template">
 			<table
 				class="table table-striped table-hover table-condensed table-bordered">
 				<tr>
 					<th>Product ID :</th>
-					<th>Total Stock</th>
-					<th>Current Stock </th>
 					<th>Product Name</th>
+					<th>Product Description</th>
+					<th>Product Type</th>
+					<th>Product Specification</th>
 				</tr>
-				<c:forEach var="stock" items="${stocks}">
-					<tr>
-						<td>${stock.stockId}</td>
-						<td>${stock.historyTotal}</td>
-						<td>${stock.totalCurrentStock}</td>
-						<td>${stock.product.productName}</td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>${productView.productId}</td>
+					<td>${productView.productName}</td>
+					<td>${productView.description}</td>
+					<td>${productView.productType}</td>
+					<td>${productView.specifications}</td>
+				</tr>
 			</table>
 		</div>
 
@@ -51,53 +51,3 @@ table, th, td {
 </html>
 
 
-
-
-<body>
-    <h2>Submitted Employee Information</h2>
-    <table>
-        <tr>
-            <td>Product Name :</td>
-            <td>${productName}</td>
-        </tr>
-        <tr>
-            <td>Product ID :</td>
-            <td>${productId}</td>
-        </tr>
-        <tr>
-            <td>Contact Number :</td>
-            <td>${contactNumber}</td>
-        </tr>
-    </table>
-</body>
-
-
-
- <tr>
-                    <td><form:label path="productName">Product Name</form:label></td>
-                    <td><form:input path="productName"/></td>
-                </tr>
-                <tr>
-                    <td><form:label path="description">Product Description</form:label></td>
-                    <td><form:input path="description"/></td>
-                </tr>
-                <tr>
-                    <td><form:label path="productType">Product Type</form:label></td>
-                    <td><form:input path="productType"/></td>
-                </tr>
-                 <tr>
-                    <td><form:label path="specifications">Product Specifications</form:label></td>
-                    <td><form:input path="specifications"/></td>
-                </tr>
-                
-                <tr>
-                    <td><form:label path="productComponentList.quantity">
-                      Quantity</form:label></td>
-                    <td><form:input path="productComponentList.quantity"/></td>
-                </tr>
-                 <tr>
-                    <td><form:label path="productComponentList.rawMaterial.rawMaterialName">
-                      Raw Materials</form:label></td>
-                    <td><form:input path="productComponentList.rawMaterial.rawMaterialName"/></td>
-                </tr>
-                
