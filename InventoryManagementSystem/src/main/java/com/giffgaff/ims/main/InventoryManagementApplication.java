@@ -23,7 +23,7 @@ public class InventoryManagementApplication extends SpringBootServletInitializer
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventoryManagementApplication.class, args);
-		logger.info("Inventory Mgmt Application");
+		logger.info("Inventory Mgmt Application Started");
 	}
 
 }

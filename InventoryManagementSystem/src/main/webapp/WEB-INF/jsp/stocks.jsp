@@ -23,27 +23,21 @@ table, th, td {
 			<h1>Inventory Management Application</h1>
 		</header>
 		<div class="starter-template">
-			<h1>Raw Materials</h1>
+			<h1>Stock Information</h1>
 			<table
 				class="table table-striped table-hover table-condensed table-bordered">
 				<tr>
-					<th>Product Id</th>
-					<th>Product Image</th>
+					<th>Stock ID</th>
+					<th>Total Stock</th>
+					<th>Current Stock </th>
 					<th>Product Name</th>
-					<th>Raw Materials</th>
-					<th>Raw Material Specifications</th>
 				</tr>
-				<c:forEach var="rawmaterial" items="${rawmaterials}">
+				<c:forEach var="stock" items="${stocks}">
 					<tr>
-						<td>${rawmaterial.productId}</td>
-						<td><img alt="Apple Juice" src="/images/appleJuice.png"
-							width="40%" height="40%" /></td>
-						<td>${rawmaterial.productName}</td>
-						<td><c:forEach var="productComponent"
-								items="${rawmaterial.productComponentList}">
-						${productComponent.rawMaterial.rawMaterialName}<br>
-							</c:forEach></td>
-						<td>${rawmaterial.specifications}</td>
+						<td>${stock.stockId}</td>
+						<td>${stock.historyTotal}</td>
+						<td>${stock.totalCurrentStock}</td>
+						<td>${stock.product.productName}</td>
 					</tr>
 				</c:forEach>
 			</table>
