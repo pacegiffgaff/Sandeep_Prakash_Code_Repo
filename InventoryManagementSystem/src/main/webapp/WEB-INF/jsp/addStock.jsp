@@ -25,7 +25,8 @@
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Submit" /></td>
+				<td><input type="submit" value="Add Stock" /></td>
+				<td><input type="submit" value="Update Stock" /></td>
 			</tr>
 		</table>
 	</form:form>
