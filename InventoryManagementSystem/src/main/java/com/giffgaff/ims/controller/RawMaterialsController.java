@@ -2,9 +2,7 @@ package com.giffgaff.ims.controller;
 
 import com.giffgaff.ims.controller.form.InventoryForm;
 import com.giffgaff.ims.model.Inventory;
-import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.InventoryService;
-import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
