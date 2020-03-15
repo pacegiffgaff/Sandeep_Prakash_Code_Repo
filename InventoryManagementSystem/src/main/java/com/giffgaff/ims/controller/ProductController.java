@@ -44,6 +44,8 @@ public class ProductController {
 
 		return "productview";
 	}
+	
+	
 
 	/**
 	 * Display All product information

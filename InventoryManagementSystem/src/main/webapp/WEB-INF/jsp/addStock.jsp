@@ -12,14 +12,18 @@
 </head>
 <body>
 
-	<h3>Please Enter Raw Material</h3>
-	<form:form method="POST" action="/addrawmaterial"
-		modelAttribute="rawMaterial">
+	<h3>Please Enter Stock Details</h3>
+	<form:form method="POST" action="/addStock" modelAttribute="stock">
 		<table>
 			<tr>
-				<td><form:label path="rawMaterialName">Raw Material Name</form:label></td>
-				<td><form:input path="rawMaterialName" /></td>
+				<td><form:label path="historyTotal">Stock History</form:label></td>
+				<td><form:input path="historyTotal" /></td>
 			</tr>
+			<tr>
+				<td><form:label path="totalCurrentStock">Current Stock</form:label></td>
+				<td><form:input path="totalCurrentStock" /></td>
+			</tr>
+
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
@@ -28,5 +32,4 @@
 	<script type="text/javascript"
 		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-
 </html>
