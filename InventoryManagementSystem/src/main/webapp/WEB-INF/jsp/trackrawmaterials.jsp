@@ -23,27 +23,23 @@ table, th, td {
 			<h1>Inventory Management Application</h1>
 		</header>
 		<div class="starter-template">
-			<h1>Raw Materials</h1>
+			<h1>Track Raw Materials</h1>
 			<table
 				class="table table-striped table-hover table-condensed table-bordered">
 				<tr>
-					<th>Product Id</th>
-					<th>Product Image</th>
-					<th>Product Name</th>
-					<th>Raw Materials</th>
-					<th>Raw Material Specifications</th>
+					<th>Inventory ID</th>
+					<th>Inventory Name</th>
+					<th>Total History</th>
+					<th>Raw Material</th>
+					<th>Current Inventory</th>
 				</tr>
-				<c:forEach var="rawmaterial" items="${rawmaterials}">
+				<c:forEach var="trackrawmaterial" items="${trackrawmaterials}">
 					<tr>
-						<td>${rawmaterial.productId}</td>
-						<td><img alt="Apple Juice" src="/images/appleJuice.png"
-							width="40%" height="40%" /></td>
-						<td>${rawmaterial.productName}</td>
-						<td><c:forEach var="productComponent"
-								items="${rawmaterial.productComponentList}">
-						${productComponent.rawMaterial.rawMaterialName}<br>
-							</c:forEach></td>
-						<td>${rawmaterial.specifications}</td>
+						<td>${trackrawmaterial.inventoryId}</td>
+						<td>${trackrawmaterial.inventoryName}</td>
+						<td>${trackrawmaterial.historyTotal}</td>
+						<td>${trackrawmaterial.rawMaterial.rawMaterialName}
+						<td>${trackrawmaterial.totalCurrentInventory}</td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -17,21 +17,22 @@ public class RawMaterial {
 	@Column(name = "material_name")
 	private String rawMaterialName;
 
-    public RawMaterial(){}
+	public RawMaterial() {
+	}
 
-    public Long getRawMaterialId() {
-        return rawMaterialId;
-    }
+	public Long getRawMaterialId() {
+		return rawMaterialId;
+	}
 
-    public void setRawMaterialId(Long rawMaterialId) {
-        this.rawMaterialId = rawMaterialId;
-    }
+	public void setRawMaterialId(Long rawMaterialId) {
+		this.rawMaterialId = rawMaterialId;
+	}
 
-    public String getRawMaterialName() {
-        return rawMaterialName;
-    }
+	public String getRawMaterialName() {
+		return rawMaterialName;
+	}
 
-    public void setRawMaterialName(String rawMaterialName) {
-        this.rawMaterialName = rawMaterialName;
-    }
+	public void setRawMaterialName(String rawMaterialName) {
+		this.rawMaterialName = rawMaterialName;
+	}
 }

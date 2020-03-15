@@ -1,6 +1,5 @@
 package com.giffgaff.ims.model;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,20 +9,14 @@ import java.math.BigDecimal;
 @Table(name = "inventory")
 public class Inventory {
 
-    @Id
-    @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
-    )
-    @GenericGenerator(
-            name = "native",
-            strategy = "native"
-    )
-    @Column(name="inventory_Id")
-    private Long inventoryId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
+	@Column(name = "inventory_Id")
+	private Long inventoryId;
 
-    @Column(name = "inventory_name")
-    private String inventoryName;
+	@Column(name = "inventory_name")
+	private String inventoryName;
 
     @Column(name = "totalCurrent_inventory")
     private Integer totalCurrentInventory;
@@ -36,21 +29,21 @@ public class Inventory {
 
     public Inventory(){}
 
-    public Long getInventoryId() {
-        return inventoryId;
-    }
+	public Long getInventoryId() {
+		return inventoryId;
+	}
 
-    public void setInventory_Id(Long inventoryId) {
-        this.inventoryId = inventoryId;
-    }
+	public void setInventory_Id(Long inventoryId) {
+		this.inventoryId = inventoryId;
+	}
 
-    public String getInventoryName() {
-        return inventoryName;
-    }
+	public String getInventoryName() {
+		return inventoryName;
+	}
 
-    public void setInventoryName(String inventoryName) {
-        this.inventoryName = inventoryName;
-    }
+	public void setInventoryName(String inventoryName) {
+		this.inventoryName = inventoryName;
+	}
 
     public Integer getTotalCurrentInventory() {
         return totalCurrentInventory;
@@ -68,15 +61,15 @@ public class Inventory {
         return historyTotal;
     }
 
-    public void setHistoryTotal(long historyTotal) {
-        this.historyTotal = historyTotal;
-    }
+	public void setHistoryTotal(long historyTotal) {
+		this.historyTotal = historyTotal;
+	}
 
-    public RawMaterial getRawMaterial() {
-        return rawMaterial;
-    }
+	public RawMaterial getRawMaterial() {
+		return rawMaterial;
+	}
 
-    public void setRawMaterial(RawMaterial rawMaterial) {
-        this.rawMaterial = rawMaterial;
-    }
+	public void setRawMaterial(RawMaterial rawMaterial) {
+		this.rawMaterial = rawMaterial;
+	}
 }

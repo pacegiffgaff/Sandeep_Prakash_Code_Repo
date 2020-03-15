@@ -20,31 +20,26 @@ table, th, td {
 <body>
 	<div class="container">
 		<header>
-			<h1>Inventory Management Application</h1>
+			<h1>Product Information</h1>
 		</header>
 		<div class="starter-template">
-			<h1>Raw Materials</h1>
 			<table
 				class="table table-striped table-hover table-condensed table-bordered">
 				<tr>
-					<th>Product Id</th>
-					<th>Product Image</th>
+					<th>Product ID :</th>
 					<th>Product Name</th>
-					<th>Raw Materials</th>
-					<th>Raw Material Specifications</th>
+					<th>Product Description</th>
+					<th>Product Type</th>
+					<th>Product Specification</th>
 				</tr>
-				<c:forEach var="rawmaterial" items="${rawmaterials}">
-					<tr>
-						<td>${rawmaterial.productId}</td>
-						<td><img alt="Apple Juice" src="/images/appleJuice.png"
-							width="40%" height="40%" /></td>
-						<td>${rawmaterial.productName}</td>
-						<td><c:forEach var="productComponent"
-								items="${rawmaterial.productComponentList}">
-						${productComponent.rawMaterial.rawMaterialName}<br>
-							</c:forEach></td>
-						<td>${rawmaterial.specifications}</td>
-					</tr>
+				<c:forEach var="viewproduct" items="${viewallproducts}">
+				<tr>
+					<td>${viewproduct.productId}</td>
+					<td>${viewproduct.productName}</td>
+					<td>${viewproduct.description}</td>
+					<td>${viewproduct.productType}</td>
+					<td>${viewproduct.specifications}</td>
+				</tr>
 				</c:forEach>
 			</table>
 		</div>
@@ -56,3 +51,5 @@ table, th, td {
 </body>
 
 </html>
+
+
