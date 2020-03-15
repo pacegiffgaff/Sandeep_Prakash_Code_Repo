@@ -1,5 +1,6 @@
 package com.giffgaff.ims.model;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -25,12 +26,12 @@ public class Inventory {
     private String inventoryName;
 
     @Column(name = "totalCurrent_inventory")
-    private BigDecimal totalCurrentInventory;
+    private Integer totalCurrentInventory;
 
     @Column(name = "history_total")
-    private long historyTotal;
+    private Long historyTotal;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL, orphanRemoval = true)
     private RawMaterial rawMaterial;
 
     public Inventory(){}
@@ -51,12 +52,16 @@ public class Inventory {
         this.inventoryName = inventoryName;
     }
 
-    public BigDecimal getTotalCurrentInventory() {
+    public Integer getTotalCurrentInventory() {
         return totalCurrentInventory;
     }
 
-    public void setTotalCurrentInventory(BigDecimal totalCurrentInventory) {
+    public void setTotalCurrentInventory(Integer totalCurrentInventory) {
         this.totalCurrentInventory = totalCurrentInventory;
+    }
+
+    public void setHistoryTotal(Long historyTotal) {
+        this.historyTotal = historyTotal;
     }
 
     public long getHistoryTotal() {

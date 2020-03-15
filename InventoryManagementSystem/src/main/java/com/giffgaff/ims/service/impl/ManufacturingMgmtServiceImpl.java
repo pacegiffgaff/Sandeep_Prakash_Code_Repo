@@ -1,5 +1,6 @@
 package com.giffgaff.ims.service.impl;
 
+import com.giffgaff.ims.controller.form.InventoryForm;
 import com.giffgaff.ims.dao.InventoryDAO;
 import com.giffgaff.ims.dao.RawMaterialDao;
 import com.giffgaff.ims.dao.ProductDAO;
@@ -12,6 +13,7 @@ import com.giffgaff.ims.service.ManufacturingMgmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -77,9 +79,5 @@ public class ManufacturingMgmtServiceImpl implements ManufacturingMgmtService {
         return stockDAO.findAll();
     }
 
-    @Override
-    public List<Inventory> getInventoryOfAllrawMaterials() {
-        return inventoryDAO.findAll();
-    }
 
 }
