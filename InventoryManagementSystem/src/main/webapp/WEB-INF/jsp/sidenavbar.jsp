@@ -35,8 +35,7 @@
 				<li data-toggle="collapse" data-target="#rawMaterials"><a
 					href="#">Raw Materials</a></li>
 				<ul class="sub-menu collapse" id="rawMaterials" style="height: 0px;">
-					<li><a href="/inventoryForm">Add/Update Raw Materials</a></li>
-					<li>
+					<li><a href="/inventoryForm">Add Raw Materials</a></li>
 					<li><a href="/inventory">Track Raw Materials</a></li>
 					<li><a href="/productSpecs">Raw Materials Specs</a></li>
 				</ul>

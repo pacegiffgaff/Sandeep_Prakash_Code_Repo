@@ -23,7 +23,7 @@ public class RawMaterialsMgmtController {
 	 * @param model
 	 * @return rawmaterials.jsp
 	 */
-	@RequestMapping("/rawmaterials")
+	@RequestMapping("/productSpecs")
 	public String getRawMaterialsWithSpecs(Model model) {
 		logger.info("Dispaly All Product names, rawmaterials and specifications");
 		model.addAttribute("productSpecs", rawMaterialsMgmtService.getRawMaterialsWithSpecs());
