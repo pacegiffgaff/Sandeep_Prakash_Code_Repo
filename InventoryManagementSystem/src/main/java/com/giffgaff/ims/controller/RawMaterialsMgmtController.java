@@ -27,7 +27,7 @@ public class RawMaterialsMgmtController {
 	public String getRawMaterialsWithSpecs(Model model) {
 		logger.info("Dispaly All Product names, rawmaterials and specifications");
 		model.addAttribute("productSpecs", rawMaterialsMgmtService.getRawMaterialsWithSpecs());
-		return "productSpecs";
+		return "jsp/productSpecs";
 	}
 
 	

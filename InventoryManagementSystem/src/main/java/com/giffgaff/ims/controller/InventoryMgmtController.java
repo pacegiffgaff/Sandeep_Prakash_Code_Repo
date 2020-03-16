@@ -21,13 +21,13 @@ public class InventoryMgmtController {
         model.addAttribute("inventoryForm",new InventoryForm());
         List<String> rawMaterialList = inventoryService.getRawMaterialList();
         model.addAttribute("rawMaterialList",rawMaterialList);
-        return "inventoryForm";
+        return "jsp/inventoryForm";
     }
 
     @PostMapping("/inventory")
     public String addRawmaterialsToInventory(@RequestParam("action") String action, InventoryForm inventoryForm, Model model){
         List<Inventory>  inventory=  inventoryService.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, action);
         model.addAttribute("inventory",inventory);
-        return "inventory";
+        return "jsp/inventory";
     }
 }

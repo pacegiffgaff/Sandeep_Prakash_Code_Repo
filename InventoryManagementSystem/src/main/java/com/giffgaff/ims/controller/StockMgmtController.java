@@ -31,7 +31,7 @@ public class StockMgmtController {
 	public String getAllStock(Model model) {
 		logger.info("To dispaly stock Information");
 		model.addAttribute("stocks", stockMgmtService.getAllStock());
-		return "stocks";
+		return "jsp/stocks";
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class StockMgmtController {
 	@RequestMapping(value = "/addStock", method = RequestMethod.POST)
 	public String addStock(@ModelAttribute("stock") Stock stock, Model model) {
 		model.addAttribute("addStock", stockMgmtService.addStock(stock));
-		return "success";
+		return "jsp/success";
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class StockMgmtController {
 	@RequestMapping(value = "/stocks/{lot}", method = RequestMethod.PUT)
 	public String updateAllProductsInStock(int lot, Model model) {
 		model.addAttribute("updateAllProducts", stockMgmtService.updateAllProductsInStock(lot));
-		return "success";
+		return "jsp/success";
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class StockMgmtController {
 	@RequestMapping(value = "/stock/{lot}", method = RequestMethod.PUT)
 	public String updateProductInStock(@ModelAttribute("product") Product product, Integer lot, Model model) {
 		model.addAttribute("updateProduct", stockMgmtService.updateProductInStock(product, lot));
-		return "success";
+		return "jsp/success";
 	}
 
 }

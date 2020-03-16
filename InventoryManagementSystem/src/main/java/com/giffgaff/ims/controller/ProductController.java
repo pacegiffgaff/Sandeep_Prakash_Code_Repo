@@ -1,7 +1,5 @@
 package com.giffgaff.ims.controller;
 
-import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ModelAndView showForm() {
-		return new ModelAndView("addproduct", "product", new Product());
+		return new ModelAndView("jsp/addproduct", "product", new Product());
 	}
 
 	/**
@@ -41,7 +39,7 @@ public class ProductController {
 				+ "Product Type" + product.getProductType() + "Product Specifications" + product.getSpecifications());
 		model.addAttribute("productview", productService.addProduct(product));
 
-		return "productview";
+		return "jsp/productview";
 	}
 	
 	
@@ -55,6 +53,6 @@ public class ProductController {
 	public String viewAllProducts(Model model) {
 		logger.info("Dispaly All Products");
 		model.addAttribute("viewallproducts", productService.viewAllProducts());
-		return "viewallproducts";
+		return "jsp/viewallproducts";
 	}
 }
