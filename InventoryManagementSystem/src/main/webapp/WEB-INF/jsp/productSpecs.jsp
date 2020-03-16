@@ -16,21 +16,27 @@
 			<h1>Inventory Management Application</h1>
 		</header>
 		<div class="starter-template">
-			<h1>Product List</h1>
+			<h1>Raw Materials</h1>
 			<table
 				class="table table-striped table-hover table-condensed table-bordered">
 				<tr>
 					<th>Product Id</th>
+					<th>Product Image</th>
 					<th>Product Name</th>
-					<th>Product Description</th>
-					<th>Product Type</th>
+					<th>Raw Materials</th>
+					<th>Raw Material Specifications</th>
 				</tr>
-				<c:forEach var="products" items="${products}">
+				<c:forEach var="productSpec" items="${productSpecs}">
 					<tr>
-						<td>${products.productId}</td>
-						<td>${products.productName}</td>
-						<td>${products.description}</td>
-						<td>${products.productType}</td>
+						<td>${productSpec.productId}</td>
+						<td><img alt="Apple Juice" src="/images/appleJuice.png"
+							width="40%" height="40%" /></td>
+						<td>${productSpec.productName}</td>
+						<td><c:forEach var="productComponent"
+								items="${productSpec.productComponentList}">
+						${productComponent.rawMaterial.rawMaterialName}<br>
+							</c:forEach></td>
+						<td>${productSpec.specifications}</td>
 					</tr>
 				</c:forEach>
 			</table>
