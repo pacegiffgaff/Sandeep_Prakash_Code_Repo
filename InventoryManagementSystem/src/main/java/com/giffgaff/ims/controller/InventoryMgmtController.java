@@ -30,4 +30,11 @@ public class InventoryMgmtController {
         model.addAttribute("inventory",inventory);
         return "inventory";
     }
+
+    @GetMapping("/inventory")
+    public String showInventory(Model model){
+        List<Inventory>  inventory=  inventoryService.getInventoryOfAllRawMaterials();
+        model.addAttribute("inventory",inventory);
+        return "inventory";
+    }
 }
