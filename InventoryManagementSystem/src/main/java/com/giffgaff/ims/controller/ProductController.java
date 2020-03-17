@@ -29,7 +29,6 @@ public class ProductController {
 	 * Product information will be stored in Database
 	 * 
 	 * @param product
-	 * @param result
 	 * @param model
 	 * @return productView.jsp
 	 */
@@ -41,8 +40,8 @@ public class ProductController {
 
 		return "jsp/productview";
 	}
-	
-	
+
+
 
 	/**
 	 * Display All product information

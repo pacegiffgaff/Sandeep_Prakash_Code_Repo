@@ -78,13 +78,31 @@
 					class="form-control" placeholder="Total Inventory" />
 
 
-				<button type="submit" class="btn btn-primary"
+				<button type="submit" class="btn btn-primary" name="action" value"add"
 					style="margin-top: 9px" style="width:100px">Add</button>
 				<button type="submit" class="btn btn-primary"
-					style="margin-top: 9px" style="width:100px">update</button>
+					style="margin-top: 9px" style="width:100px" name="action" value="update" >update</button>
 
 			</form:form>
 		</div>
+		<div class="content col-md-9" class="starter-template">
+        			<h1>Raw Material in Inventory</h1>
+        			<table
+        				class="table table-striped table-hover table-condensed table-bordered">
+        				<tr>
+        					<th>Inventory Id</th>
+        					<th>Raw Material</th>
+        					<th>Current Inventory</th>
+        					<th>Total Inventory in History</th>
+        				</tr>
+        					<tr>
+        						<td>${inventory.inventoryId}</td>
+        						<td>${inventory.rawMaterial.rawMaterialName}</td>
+        						<td>${inventory.totalCurrentInventory}</td>
+        						<td>${inventory.historyTotal}</td>
+        					</tr>
+        			</table>
+        </div>
 	</div>
 
 </body>

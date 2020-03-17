@@ -57,7 +57,7 @@
 		</div>
 		<div class="content col-md-9">
 			<header>
-				<h4>Raw Materials Specifications</h4>
+				<h4>Product Specifications</h4>
 			</header>
 			<div class="starter-template">
 				<table
