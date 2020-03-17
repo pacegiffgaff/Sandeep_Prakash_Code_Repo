@@ -1,8 +1,5 @@
 package com.giffgaff.ims.controller.form;
 
-import com.giffgaff.ims.model.ProductComponent;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductForm {
