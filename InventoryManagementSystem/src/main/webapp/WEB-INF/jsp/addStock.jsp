@@ -57,22 +57,43 @@
 		</div>
 		<div class="content col-md-9">
 			<h3>Enter Stock Details</h3>
-			<form:form method="POST" action="/addStock" modelAttribute="stock">
+			<form:form method="POST" action="/stock" modelAttribute="stockForm">
 
-				<form:label path="historyTotal">Total Stock</form:label>
-				<form:input type="text" path="historyTotal" class="form-control"
-					placeholder="Total Stock" />
+				<form:label path="productName">Total Stock</form:label>
+			    <form:select path="productName" class="form-control" placeholder="Product Name">
+                        <form:options items="${productNames}" />
+                    </form:select>
 
-				<form:label path="totalCurrentStock">Current Stock</form:label>
-				<form:input type="text" path="totalCurrentStock"
-					class="form-control" placeholder="Current Stock" />
-
-				<button type="submit" class="btn btn-primary"
-					style="margin-top: 9px">Add Stock</button>
+				<form:label path="quantity">Current Stock</form:label>
+				<form:input type="text" path="quantity"
+					class="form-control" placeholder="Quantity" />
 
 				<button type="submit" class="btn btn-primary"
-					style="margin-top: 9px">Update Stock</button>
+					style="margin-top: 9px" name="action" value="add">Add Stock</button>
+
+				<button type="submit" class="btn btn-primary"
+					style="margin-top: 9px" name="action" value="delete">Delete Stock</button>
 			</form:form>
+			<div class="content col-md-9" class="starter-template">
+            		    <c:if test="${not empty stock}">
+                    			<h1>Products in Stock</h1>
+                    			<table
+                    				class="table table-striped table-hover table-condensed table-bordered">
+                    				<tr>
+                    					<th>Stock Id</th>
+                    					<th>Product Name</th>
+                    					<th>Current Stock</th>
+                    					<th>Total Stock in History</th>
+                    				</tr>
+                    					<tr>
+                    						<td>${stock.stockId}</td>
+                    						<td>${stock.product.productName}</td>
+                    						<td>${stock.totalCurrentStock}</td>
+                    						<td>${stock.historyTotal}</td>
+                    					</tr>
+                    			</table>
+                    	</c:if>
+                    </div>
 			<script type="text/javascript"
 				src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		</div>

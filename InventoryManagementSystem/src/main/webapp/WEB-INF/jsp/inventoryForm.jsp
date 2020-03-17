@@ -81,11 +81,12 @@
 				<button type="submit" class="btn btn-primary" name="action" value"add"
 					style="margin-top: 9px" style="width:100px">Add</button>
 				<button type="submit" class="btn btn-primary"
-					style="margin-top: 9px" style="width:100px" name="action" value="update" >update</button>
+					style="margin-top: 9px" style="width:100px" name="action" value="delete" >Delete</button>
 
 			</form:form>
 		</div>
 		<div class="content col-md-9" class="starter-template">
+		    <c:if test="${not empty inventory}">
         			<h1>Raw Material in Inventory</h1>
         			<table
         				class="table table-striped table-hover table-condensed table-bordered">
@@ -102,6 +103,7 @@
         						<td>${inventory.historyTotal}</td>
         					</tr>
         			</table>
+        	</c:if>
         </div>
 	</div>
 

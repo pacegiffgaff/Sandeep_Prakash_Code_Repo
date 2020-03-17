@@ -1,5 +1,6 @@
 package com.giffgaff.ims.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -37,5 +38,17 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		return productList;
+	}
+
+	@Override
+	public Product findProductByProductName(String productName) {
+		return productDAO.findByProductName(productName);
+	}
+
+	@Override
+	public List<String> getAllproductNames(){
+		List<String> productNames = new ArrayList<>();
+		productDAO.findAll().forEach(product->productNames.add(product.getProductName()));
+		return productNames;
 	}
 }

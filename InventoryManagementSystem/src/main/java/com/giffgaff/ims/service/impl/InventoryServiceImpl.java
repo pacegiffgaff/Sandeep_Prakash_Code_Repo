@@ -45,20 +45,16 @@ public class InventoryServiceImpl implements InventoryService {
         if (inventory != null) {
             Integer totalCurrentInventory = inventory.getTotalCurrentInventory();
             Long historyTotal = inventory.getHistoryTotal();
-            Integer totalCurrentInventoryCalculated = totalCurrentInventory;
-            Long historyTotalCalculated= historyTotal;
             if (action.equalsIgnoreCase("ADD")) {
-                totalCurrentInventoryCalculated = totalCurrentInventory + rawMaterialQuantity;
-                 historyTotalCalculated = historyTotal + rawMaterialQuantity;
-            }else{
-                totalCurrentInventoryCalculated = totalCurrentInventory - rawMaterialQuantity;
-                totalCurrentInventoryCalculated= (totalCurrentInventoryCalculated< 0) ?0: totalCurrentInventoryCalculated;
-                historyTotalCalculated = historyTotal - rawMaterialQuantity;
-                historyTotalCalculated= (historyTotalCalculated< 0) ?0: historyTotalCalculated;
+                totalCurrentInventory += rawMaterialQuantity;
+                historyTotal += rawMaterialQuantity;
+                inventory.setHistoryTotal(historyTotal);
 
+            }else{
+                totalCurrentInventory -= rawMaterialQuantity;
+                totalCurrentInventory= (totalCurrentInventory< 0) ?0: totalCurrentInventory;
             }
-            inventory.setTotalCurrentInventory(totalCurrentInventoryCalculated);
-            inventory.setHistoryTotal(historyTotalCalculated);
+            inventory.setTotalCurrentInventory(totalCurrentInventory);
             inventory= inventoryDAO.save(inventory);
             return inventory;
         }

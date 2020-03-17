@@ -14,7 +14,7 @@ public class Stock {
     Product product;
 
     @Column(name = "curr_stock")
-    private long totalCurrentStock;
+    private int totalCurrentStock;
 
     @Column(name = "hist_total")
     private long historyTotal;
@@ -37,11 +37,11 @@ public class Stock {
         this.product = product;
     }
 
-    public long getTotalCurrentStock() {
+    public int getTotalCurrentStock() {
         return totalCurrentStock;
     }
 
-    public void setTotalCurrentStock(long totalCurrentStock) {
+    public void setTotalCurrentStock(int totalCurrentStock) {
         this.totalCurrentStock = totalCurrentStock;
     }
 

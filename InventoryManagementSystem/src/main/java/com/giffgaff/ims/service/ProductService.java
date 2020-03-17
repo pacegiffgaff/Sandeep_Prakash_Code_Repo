@@ -9,4 +9,9 @@ public interface ProductService {
 	Product addProduct(Product product);
 
 	List<Product> viewAllProducts();
-}
+
+	Product findProductByProductName(String productName);
+
+	 List<String> getAllproductNames();
+
+	}

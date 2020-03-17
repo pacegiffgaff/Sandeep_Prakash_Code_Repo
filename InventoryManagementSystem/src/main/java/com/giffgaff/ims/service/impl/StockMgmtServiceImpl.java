@@ -2,6 +2,8 @@ package com.giffgaff.ims.service.impl;
 
 import java.util.List;
 
+import com.giffgaff.ims.controller.form.StockForm;
+import com.giffgaff.ims.dao.ProductDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,9 @@ public class StockMgmtServiceImpl implements StockMgmtService {
 	@Autowired
 	InventoryDAO inventoryDAO;
 
+	@Autowired
+	ProductDAO productDAO;
+
 	@Override
 	public List<Stock> getAllStock() {
 
@@ -36,16 +41,11 @@ public class StockMgmtServiceImpl implements StockMgmtService {
 	}
 
 	@Override
-	public Stock addStock(Stock stock) {
-		Stock rawObj = stockDAO.save(stock);
-		logger.info("\n Stock ID : " + stock.getStockId() + "Total Stock : " + stock.getHistoryTotal()
-				+ "\n Current Stock : " + stock.getTotalCurrentStock() + "\n Product Details : " + stock.getProduct());
-		return rawObj;
-	}
-
-	@Override
-	public Stock updateProductInStock(Product product, Integer lot) {
-		Stock stock = stockDAO.findByProduct(product);
+	public Stock updateProductInStock(StockForm stockForm, String action) {
+		String productName= stockForm.getProductName();
+		int lot = stockForm.getQuantity();
+		Stock stock = stockDAO.findByProduct_ProductName(productName);
+		Product product = productDAO.findByProductName(productName);
 		if (stock == null) {
 			stock = new Stock();
 			stock.setProduct(product);
@@ -53,9 +53,28 @@ public class StockMgmtServiceImpl implements StockMgmtService {
 			stock.setTotalCurrentStock(lot);
 			return stockDAO.save(stock);
 		}
-		stockDAO.manufactureProductInLot(product, lot);
-		inventoryDAO.updateRawmaterialonProduction(lot);
+		if (product == null) {
+			return null;
+		}
+		updateStock(stock,lot,action);
 		return stockDAO.findByProduct(product);
+	}
+
+	private Stock updateStock(Stock stock, int lot, String action) {
+		int totalCurrentStock = stock.getTotalCurrentStock();
+		long historyTotal = stock.getHistoryTotal();
+		if (action.equalsIgnoreCase("add")) {
+			totalCurrentStock+=lot;
+			historyTotal+=lot;
+			stock.setTotalCurrentStock(totalCurrentStock);
+			stock.setHistoryTotal(historyTotal);
+			return stockDAO.save(stock);
+		}
+		totalCurrentStock-=lot;
+		stock.setTotalCurrentStock(totalCurrentStock);
+		stock.setHistoryTotal(historyTotal);
+
+		return stockDAO.save(stock);
 	}
 
 	@Override

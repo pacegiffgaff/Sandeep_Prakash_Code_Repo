@@ -1,17 +1,22 @@
 package com.giffgaff.ims.controller;
 
+import com.giffgaff.ims.controller.form.InventoryForm;
+import com.giffgaff.ims.controller.form.StockForm;
+import com.giffgaff.ims.model.Inventory;
+import com.giffgaff.ims.service.ProductService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.Stock;
 import com.giffgaff.ims.service.StockMgmtService;
+
+import java.util.List;
 
 @Controller
 public class StockMgmtController {
@@ -21,10 +26,13 @@ public class StockMgmtController {
 	@Autowired
 	StockMgmtService stockMgmtService;
 
+	@Autowired
+	ProductService productService;
+
 	/**
 	 * Display stock details from database
 	 * 
-	 * @param Model
+	 * @param model
 	 * @return Stocks.jsp
 	 */
 	@RequestMapping("/stocks")
@@ -39,49 +47,27 @@ public class StockMgmtController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/stock", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		return new ModelAndView("addStock", "stock", new Stock());
-	}
-
-	/**
-	 * Add stock to database
-	 * 
-	 * @param stock
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/addStock", method = RequestMethod.POST)
-	public String addStock(@ModelAttribute("stock") Stock stock, Model model) {
-		model.addAttribute("addStock", stockMgmtService.addStock(stock));
-		return "jsp/success";
-	}
-
-	/**
-	 * update all products in stock
-	 * 
-	 * @param lot
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/stocks/{lot}", method = RequestMethod.PUT)
-	public String updateAllProductsInStock(int lot, Model model) {
-		model.addAttribute("updateAllProducts", stockMgmtService.updateAllProductsInStock(lot));
-		return "jsp/success";
+	@RequestMapping(value = "/addStock", method = RequestMethod.GET)
+	public String showForm(Model model) {
+		List<String> productNames = productService.getAllproductNames();
+		model.addAttribute("productNames",productNames);
+		model.addAttribute("stockForm", new StockForm());
+		return "jsp/addStock";
 	}
 
 	/**
 	 * update specific product in stock
 	 * 
-	 * @param product
-	 * @param lot
+	 * @param stockForm
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/stock/{lot}", method = RequestMethod.PUT)
-	public String updateProductInStock(@ModelAttribute("product") Product product, Integer lot, Model model) {
-		model.addAttribute("updateProduct", stockMgmtService.updateProductInStock(product, lot));
-		return "jsp/success";
+	@RequestMapping(value = "/stock", method = RequestMethod.POST)
+	public String updateProductInStock(@RequestParam("action") String action,@ModelAttribute StockForm stockForm, Model model) {
+		model.addAttribute("stock", stockMgmtService.updateProductInStock(stockForm, action));
+		List<String> productNames = productService.getAllproductNames();
+		model.addAttribute("productNames",productNames);
+		return "jsp/addStock";
 	}
 
 }

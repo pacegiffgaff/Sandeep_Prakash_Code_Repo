@@ -43,7 +43,7 @@
 				<li data-toggle="collapse" data-target="#stock"><a href="#">Stock</a></li>
 				<ul class="sub-menu collapse" id="stock" style="height: 0px;">
 					<li><a href="/addStock">Add Stock</a></li>
-					<li><a href="#">view Stock</a></li>
+					<li><a href="/stocks">View Stock</a></li>
 				</ul>
 			</ul>
 
