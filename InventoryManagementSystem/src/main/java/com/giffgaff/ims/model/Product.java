@@ -24,9 +24,9 @@ public class Product {
 	@Column(name = "prod_type")
 	private String productType;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany
 	@JoinColumn(name = "prod_id")
-	private List<ProductComponent> productComponentList = new ArrayList<>();
+	private List<RawMaterial> rawMaterials = new ArrayList<>();
 
 	@Column(name = "prod_specification")
 	private String specifications;
@@ -66,14 +66,6 @@ public class Product {
 		this.productType = productType;
 	}
 
-	public List<ProductComponent> getProductComponentList() {
-		return productComponentList;
-	}
-
-	public void setProductComponentList(List<ProductComponent> productComponentList) {
-		this.productComponentList = productComponentList;
-	}
-
 	public String getSpecifications() {
 		return specifications;
 	}
@@ -82,4 +74,11 @@ public class Product {
 		this.specifications = specifications;
 	}
 
+	public List<RawMaterial> getRawMaterials() {
+		return rawMaterials;
+	}
+
+	public void setRawMaterials(List<RawMaterial> rawMaterials) {
+		this.rawMaterials = rawMaterials;
+	}
 }

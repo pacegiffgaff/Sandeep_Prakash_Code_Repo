@@ -38,7 +38,7 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public List<Inventory> addNewRawmaterialOrUpdateRawMaterialQuantity(InventoryForm inventoryForm, String action) {
+    public Inventory addNewRawmaterialOrUpdateRawMaterialQuantity(InventoryForm inventoryForm, String action) {
         String rawMaterialName = inventoryForm.getRawMaterialName();
         Integer rawMaterialQuantity = inventoryForm.getRawMaterialQuantity();
         Inventory inventory = inventoryDAO.findByRawMaterial_RawMaterialName(rawMaterialName);
@@ -59,14 +59,14 @@ public class InventoryServiceImpl implements InventoryService {
             }
             inventory.setTotalCurrentInventory(totalCurrentInventoryCalculated);
             inventory.setHistoryTotal(historyTotalCalculated);
-            inventoryDAO.save(inventory);
-            return inventoryDAO.findAll();
+            inventory= inventoryDAO.save(inventory);
+            return inventory;
         }
-        addNewRawMaterialToInventory(rawMaterialName, rawMaterialQuantity);
-        return inventoryDAO.findAll();
+        inventory = addNewRawMaterialToInventory(rawMaterialName, rawMaterialQuantity);
+        return inventory;
     }
 
-    private void addNewRawMaterialToInventory(String rawMaterialName, Integer rawMaterialQuantity) {
+    private Inventory addNewRawMaterialToInventory(String rawMaterialName, Integer rawMaterialQuantity) {
         Inventory inventory = new Inventory();
         inventory.setTotalCurrentInventory(rawMaterialQuantity);
         inventory.setHistoryTotal(rawMaterialQuantity);
@@ -75,7 +75,8 @@ public class InventoryServiceImpl implements InventoryService {
         rawMaterial.setRawMaterialName(rawMaterialName);
         RawMaterial rawMaterialSaved = rawMaterialDao.save(rawMaterial);
         inventory.setRawMaterial(rawMaterialSaved);
-        inventoryDAO.save(inventory);
+        inventory = inventoryDAO.save(inventory);
+        return inventory;
     }
 
 }

@@ -12,5 +12,5 @@ public interface InventoryService {
 
     List<Inventory> getInventoryOfAllRawMaterials();
 
-    List<Inventory> addNewRawmaterialOrUpdateRawMaterialQuantity(InventoryForm inventoryForm, String action);
+    Inventory addNewRawmaterialOrUpdateRawMaterialQuantity(InventoryForm inventoryForm, String action);
 }

@@ -26,15 +26,15 @@ public class InventoryMgmtController {
 
     @PostMapping("/inventory")
     public String addRawmaterialsToInventory(@RequestParam("action") String action, InventoryForm inventoryForm, Model model){
-        List<Inventory>  inventory=  inventoryService.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, action);
+        Inventory  inventory=  inventoryService.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, action);
         model.addAttribute("inventory",inventory);
-        return "jsp/inventory";
+        return "jsp/inventoryForm";
     }
 
     @GetMapping("/inventory")
     public String showInventory(Model model){
         List<Inventory>  inventory=  inventoryService.getInventoryOfAllRawMaterials();
         model.addAttribute("inventory",inventory);
-        return "inventory";
+        return "jsp/inventory";
     }
 }
