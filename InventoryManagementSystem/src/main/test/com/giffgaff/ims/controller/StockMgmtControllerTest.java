@@ -12,20 +12,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
-public class RawMaterialsMgmtControllerTest {
+public class StockMgmtControllerTest {
 
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new RawMaterialsMgmtController()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new StockMgmtController()).build();
     }
 
     @Test
     public void testHomePage() throws Exception {
-        this.mockMvc.perform(get("/productSpecs"))
+        this.mockMvc.perform(get("/stocks"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("productSpecs"))
+                .andExpect(view().name("stocks"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
