@@ -14,20 +14,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class StockMgmtControllerTest {
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new StockMgmtController()).build();
-    }
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.standaloneSetup(new StockMgmtController()).build();
+	}
 
-    @Test
-    public void testHomePage() throws Exception {
-        this.mockMvc.perform(get("/stocks"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("stocks"))
-                .andDo(MockMvcResultHandlers.print())
-                .andReturn();
-    }
+	@Test
+	public void testHomePage() throws Exception {
+		this.mockMvc.perform(get("/stocks")).andExpect(status().isOk()).andExpect(view().name("stocks"))
+				.andDo(MockMvcResultHandlers.print()).andReturn();
+	}
 
 }
