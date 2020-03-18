@@ -1,5 +1,7 @@
 package com.giffgaff.ims.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -20,6 +22,9 @@ public class User {
 
 	@ManyToMany
 	private Set<Role> roles;
+
+	@OneToMany
+	private List<Address> addressList = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -59,5 +64,13 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
 	}
 }

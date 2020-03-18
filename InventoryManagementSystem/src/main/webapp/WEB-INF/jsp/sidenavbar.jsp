@@ -47,8 +47,8 @@
 				</ul>
 			</ul>
 
-			<li><a href="#">Production and Quality</a></li>
-			<li><a href="#">Product Shipping Address</a></li>
+			<li><a href="#">Production</a></li>
+			<li><a href="/order">Order</a></li>
 			<li><a href="#">Address List</a></li>
 			<li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li>
 

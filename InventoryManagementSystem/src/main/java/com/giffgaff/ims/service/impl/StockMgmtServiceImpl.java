@@ -71,6 +71,7 @@ public class StockMgmtServiceImpl implements StockMgmtService {
 			return stockDAO.save(stock);
 		}
 		totalCurrentStock-=lot;
+		totalCurrentStock= (totalCurrentStock< 0) ?0: totalCurrentStock;
 		stock.setTotalCurrentStock(totalCurrentStock);
 		stock.setHistoryTotal(historyTotal);
 
