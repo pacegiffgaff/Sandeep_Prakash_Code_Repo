@@ -56,8 +56,8 @@
 			<%@include file="sidenavbar.jsp"%>
 		</div>
 		<div class="content col-md-9">
-			<h3>Enter Product Details</h3>
-			<form:form method="POST" action="/addproduct"
+			<h3>Cart</h3>
+			<form:form method="POST" action="/order"
 				modelAttribute="product">
 				<form:errors path="*" cssClass="errorblock" element="div" />
 

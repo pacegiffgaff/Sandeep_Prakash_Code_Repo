@@ -29,7 +29,7 @@ public class ProductController {
 		List<RawMaterial> rawMaterialList = productService.getRawmaterialList();
 
 		Product product = new Product();
-		product.setRawMaterialList(rawMaterialList);
+		//product.setRawMaterialList(rawMaterialList);
 		for (RawMaterial rawMaterial : rawMaterialList) {
 			logger.info("\n Raw material name"+rawMaterial.getRawMaterialName());
 		}

@@ -1,0 +1,14 @@
+package com.giffgaff.ims.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class CartController {
+    @PostMapping("/cart")
+    public String addProductToCart(String productName){
+
+        return null;
+    }
+}
