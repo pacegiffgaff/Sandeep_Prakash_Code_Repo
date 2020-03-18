@@ -2,7 +2,7 @@ package com.giffgaff.ims.service.impl;
 
 import com.giffgaff.ims.controller.form.InventoryForm;
 import com.giffgaff.ims.dao.InventoryDAO;
-import com.giffgaff.ims.dao.RawMaterialDao;
+import com.giffgaff.ims.dao.RawMaterialDAO;
 import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.InventoryService;
@@ -18,12 +18,12 @@ public class InventoryServiceImpl implements InventoryService {
     @Autowired
     InventoryDAO inventoryDAO;
     @Autowired
-    RawMaterialDao rawMaterialDao;
+    RawMaterialDAO rawMaterialDAO;
 
     @Override
     public List<String> getRawMaterialList() {
         List<String> rawMaterialNameList = new ArrayList<>();
-        List<RawMaterial> rawMaterialList = rawMaterialDao.findAll();
+        List<RawMaterial> rawMaterialList = rawMaterialDAO.findAll();
         if (rawMaterialList != null) {
 
             rawMaterialList.forEach(rawMaterial -> rawMaterialNameList.add(rawMaterial.getRawMaterialName()));
@@ -69,7 +69,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         RawMaterial rawMaterial = new RawMaterial();
         rawMaterial.setRawMaterialName(rawMaterialName);
-        RawMaterial rawMaterialSaved = rawMaterialDao.save(rawMaterial);
+        RawMaterial rawMaterialSaved = rawMaterialDAO.save(rawMaterial);
         inventory.setRawMaterial(rawMaterialSaved);
         inventory = inventoryDAO.save(inventory);
         return inventory;
