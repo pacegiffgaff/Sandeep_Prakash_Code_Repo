@@ -21,6 +21,7 @@ public class Order {
     @ManyToOne
     User user;
 
+    @OneToOne
     private Address address;
     private boolean cart = true;
 

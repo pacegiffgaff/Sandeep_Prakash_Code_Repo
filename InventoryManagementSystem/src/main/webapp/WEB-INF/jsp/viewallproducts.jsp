@@ -61,11 +61,11 @@
 				<table
 					class="table table-striped table-hover table-condensed table-bordered">
 					<tr>
-						<th>Product ID :</th>
+						<th>Product Id </th>
 						<th>Product Name</th>
 						<th>Product Description</th>
-						<th>Product Type</th>
-						<th>Product Specification</th>
+						<th>Product Category</th>
+						<th>Product Specifications</th>
 					</tr>
 					<c:forEach var="viewproduct" items="${viewallproducts}">
 						<tr>
