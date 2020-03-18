@@ -68,24 +68,16 @@
 				<form:label path="productType">Catagory Type</form:label>
 				<form:select class="form-control" path="productType">
 					<form:option value="NONE" label="--- Select ---" />
-					<form:option value="juice" label="Juice" />
-					<form:option value="milkShakes" label="Milk Shake" />
-					<form:option value="softDrinks" label="Soft Drinks" />
-					<form:option value="tonicWater" label="Tonic Water" />
-					<form:option value="energyDrink" label="Energy Drink" />
+					<form:option value="Juice" label="Juice" />
+					<form:option value="Milk Shakes" label="Milk Shake" />
+					<form:option value="Soft Drinks" label="Soft Drinks" />
+					<form:option value="Tonic Water" label="Tonic Water" />
+					<form:option value="Energy Drink" label="Energy Drink" />
 				</form:select>
 
-				<form:label path="rawMaterialList">Raw Material Name</form:label>
-				<form:input type="text" path="rawMaterialList" class="form-control"
-					list="rawMaterialList" placeholder="Raw Material Name" />
-				<datalist id="rawMaterialList">
-					<c:forEach var="rawMaterialItem" items="${product.rawMaterialList}">
-
-						<option value="${rawMaterialItem.rawMaterialId}">${rawMaterialItem.rawMaterialName}</option>
-
-					</c:forEach>
-				</datalist>
-
+				<form:label path="components">Raw Material Name</form:label>
+				<form:select class="form-control" path = "components" items = "${rawMaterialList}"
+                     multiple = "true" />
 
 				<form:label path="specifications">Product Specifications</form:label>
 				<form:input type="text" class="form-control" path="specifications"
