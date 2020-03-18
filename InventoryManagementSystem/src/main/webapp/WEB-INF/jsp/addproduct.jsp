@@ -52,7 +52,7 @@
 			<%@include file="sidenavbar.jsp"%>
 		</div>
 		<div class="content col-md-9">
-			<h3>Enter Product Details</h3>
+			<h4>Enter Product Details</h4>
 			<form:form method="POST" action="/addproduct"
 				modelAttribute="product">
 				<form:errors path="*" cssClass="errorblock" element="div" />
@@ -65,7 +65,7 @@
 				<form:input type="text" path="description" class="form-control"
 					placeholder="Product Description" />
 
-				<form:label path="productType">Catagory Type</form:label>
+				<form:label path="productType">Product Catagory</form:label>
 				<form:select class="form-control" path="productType">
 					<form:option value="NONE" label="--- Select ---" />
 					<form:option value="Juice" label="Juice" />

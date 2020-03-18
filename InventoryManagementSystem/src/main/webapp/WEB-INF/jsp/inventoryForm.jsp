@@ -71,10 +71,10 @@
 
 				<form:label path="rawMaterialQuantity">Total Inventory</form:label>
 				<form:input type="text" path="rawMaterialQuantity"
-					class="form-control" placeholder="Total Inventory" />
+					class="form-control" placeholder="Total Raw Materials" />
 
 
-				<button type="submit" class="btn btn-primary" name="action" value"add"
+				<button type="submit" class="btn btn-primary" name="action" value="add"
 					style="margin-top: 9px" style="width:100px">Add</button>
 				<button type="submit" class="btn btn-primary"
 					style="margin-top: 9px" style="width:100px" name="action" value="delete" >Delete</button>
