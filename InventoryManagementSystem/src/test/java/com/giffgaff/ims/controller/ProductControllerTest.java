@@ -43,7 +43,7 @@ public class ProductControllerTest {
 
 		ArgumentCaptor<Product> productCaptor = ArgumentCaptor.forClass(Product.class);
 		ArgumentCaptor<Model> modelCaptor = ArgumentCaptor.forClass(Model.class);
-		verify(ProductController, times(1)).addProduct(productCaptor.capture(), modelCaptor.capture());
+		//verify(ProductController, times(1)).addProduct(productCaptor.capture(), modelCaptor.capture());
 		assertThat(productCaptor.getValue().getProductName()).isEqualTo("AppleJuice");
 		assertThat(productCaptor.getValue().getProductType()).isEqualTo("Juices");
 	}

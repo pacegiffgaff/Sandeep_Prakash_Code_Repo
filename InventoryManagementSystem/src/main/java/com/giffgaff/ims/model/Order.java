@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name="order")
+@Table(name="cust_order")
 public class Order {
     @Id
     @GeneratedValue
@@ -21,6 +21,7 @@ public class Order {
     @ManyToOne
     User user;
 
+    @OneToOne
     private Address address;
     private boolean cart = true;
 

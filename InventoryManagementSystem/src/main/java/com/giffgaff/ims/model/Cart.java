@@ -12,7 +12,6 @@ public class Cart {
     private Long cartId;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id")
     private List<Product> products = new ArrayList<>();
 
     @OneToOne
@@ -35,5 +34,13 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
