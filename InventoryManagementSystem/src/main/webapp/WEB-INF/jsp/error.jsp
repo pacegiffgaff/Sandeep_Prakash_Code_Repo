@@ -19,10 +19,6 @@
 						class="nav-item nav-link">About</a> <a href="#"
 						class="nav-item nav-link">Contact</a>
 				</div>
-				<div class="navbar-nav ml-auto">
-					<a href="#" class="nav-item nav-link">Register</a> <a href="#"
-						class="nav-item nav-link">Login</a>
-				</div>
 			</div>
 		</div>
 	</nav>

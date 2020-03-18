@@ -44,10 +44,6 @@
 								class="nav-item nav-link">About</a> <a href="#"
 								class="nav-item nav-link">Contact</a>
 						</div>
-						<div class="navbar-nav ml-auto">
-							<a href="#" class="nav-item nav-link">Register</a> <a href="#"
-								class="nav-item nav-link">Login</a>
-						</div>
 					</div>
 				</div>
 			</nav>
@@ -78,6 +74,18 @@
 					<form:option value="tonicWater" label="Tonic Water" />
 					<form:option value="energyDrink" label="Energy Drink" />
 				</form:select>
+
+				<form:label path="rawMaterialList">Raw Material Name</form:label>
+				<form:input type="text" path="rawMaterialList" class="form-control"
+					list="rawMaterialList" placeholder="Raw Material Name" />
+				<datalist id="rawMaterialList">
+					<c:forEach var="rawMaterialItem" items="${product.rawMaterialList}">
+
+						<option value="${rawMaterialItem.rawMaterialId}">${rawMaterialItem.rawMaterialName}</option>
+
+					</c:forEach>
+				</datalist>
+
 
 				<form:label path="specifications">Product Specifications</form:label>
 				<form:input type="text" class="form-control" path="specifications"

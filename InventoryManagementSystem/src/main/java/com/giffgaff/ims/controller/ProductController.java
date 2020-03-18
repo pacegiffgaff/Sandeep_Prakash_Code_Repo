@@ -1,5 +1,7 @@
 package com.giffgaff.ims.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.giffgaff.ims.model.Product;
+import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.ProductService;
 
 @Controller
@@ -22,6 +25,16 @@ public class ProductController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ModelAndView showForm() {
+
+		List<RawMaterial> rawMaterialList = productService.getRawmaterialList();
+
+		Product product = new Product();
+		product.setRawMaterialList(rawMaterialList);
+		for (RawMaterial rawMaterial : rawMaterialList) {
+			logger.info("\n Raw material name"+rawMaterial.getRawMaterialName());
+		}
+		
+
 		return new ModelAndView("jsp/addproduct", "product", new Product());
 	}
 
@@ -41,10 +54,9 @@ public class ProductController {
 		return "jsp/productview";
 	}
 
-
-
 	/**
 	 * Display All product information
+	 * 
 	 * @param model
 	 * @return
 	 */

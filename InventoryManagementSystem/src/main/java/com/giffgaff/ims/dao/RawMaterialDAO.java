@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RawMaterialDao extends JpaRepository<RawMaterial, Long> {
+public interface RawMaterialDAO extends JpaRepository<RawMaterial, Long> {
 
     RawMaterial findByRawMaterialName(String rawMaterialName);
 }

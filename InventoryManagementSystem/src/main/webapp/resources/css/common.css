@@ -71,7 +71,7 @@ body {
 	border-color: #dee2e6
 }
 a {
-    color: #c0c0c0;
+    color: #333;
     text-decoration: none;
     background-color: transparent;
     border-color: #bcbcbc;
@@ -80,4 +80,8 @@ a {
 
 .sideNav .sidebar-nav li{
 	width:100%;
+}
+.btn-block {
+    display: block;
+    width: 100%;
 }
