@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.giffgaff.ims.controller.form.StockForm;
 import com.giffgaff.ims.dao.ProductDAO;
+import com.giffgaff.ims.service.IAuthenticationFacade;
+import com.giffgaff.ims.service.SecurityService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import com.giffgaff.ims.dao.InventoryDAO;
@@ -21,6 +24,9 @@ public class StockMgmtServiceImpl implements StockMgmtService {
 
 	@Autowired
 	StockDAO stockDAO;
+
+	@Autowired
+	private IAuthenticationFacade authenticationFacade;
 
 	@Autowired
 	InventoryDAO inventoryDAO;

@@ -9,12 +9,17 @@ import com.giffgaff.ims.model.Cart;
 import com.giffgaff.ims.model.Order;
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.model.User;
+import com.giffgaff.ims.service.IAuthenticationFacade;
 import com.giffgaff.ims.service.OrderService;
 import com.giffgaff.ims.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 public class OrderServiceImpl implements OrderService {
@@ -29,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     CartDAO cartDAO;
 
     @Autowired
-    SecurityService securityService;
+    IAuthenticationFacade authenticationFacade;
 
     @Autowired
     UserRepository userRepository;
@@ -44,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
             return;
         }
         Order order = new Order();
-        String userName= securityService.findLoggedInUsername();
+        Authentication authentication = authenticationFacade.getAuthentication();
+        String userName= authentication.getName();
         User user = userRepository.findByUsername(userName);
 
         for (Map.Entry<String, Integer> productNameAndQuantity : productNameAndQuantityList.entrySet()) {
@@ -65,7 +71,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void addProductToCart(String prodName) {
         Product product= productDAO.findByProductName(prodName);
-        String userName= securityService.findLoggedInUsername();
+        Authentication authentication = authenticationFacade.getAuthentication();
+        String userName= authentication.getName();
         Cart cart =cartDAO.findByUser_Username(userName);
         if (cart != null) {
             cart.getProducts().add(product);
@@ -78,4 +85,22 @@ public class OrderServiceImpl implements OrderService {
         cart.setUser(user);
         cartDAO.save(cart);
     }
+
+    public Cart getCartOfLoggedInUser() {
+        Authentication authentication = authenticationFacade.getAuthentication();
+        String userName= authentication.getName();
+        Cart cart =cartDAO.findByUser_Username(userName);
+        return cart;
+    }
+
+    public Map<String,Integer> getProductAndQuantityOfLoggedInUser(){
+        Cart cart= getCartOfLoggedInUser();
+        Set<Product> productList= cart.getProducts();
+        Map<String, Integer> prodQuantity = new HashMap<>();
+        productList.forEach(product -> {
+            prodQuantity.put(product.getProductName(),0);
+        });
+        return prodQuantity;
+    }
+
 }

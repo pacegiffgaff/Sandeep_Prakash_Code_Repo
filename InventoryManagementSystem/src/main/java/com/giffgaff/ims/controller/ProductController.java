@@ -63,4 +63,11 @@ public class ProductController {
 		model.addAttribute("viewallproducts", productService.viewAllProducts());
 		return "jsp/viewallproducts";
 	}
+
+	@RequestMapping("/productShopping")
+	public String productShoppingView(Model model) {
+		logger.info("Dispaly All Products");
+		model.addAttribute("viewallproducts", productService.viewAllProducts());
+		return "jsp/productShopping";
+	}
 }

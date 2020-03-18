@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Product {
@@ -83,4 +84,16 @@ public class Product {
 		this.rawMaterialList = rawMaterialList;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Product product = (Product) o;
+		return Objects.equals(productName, product.productName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(productName);
+	}
 }

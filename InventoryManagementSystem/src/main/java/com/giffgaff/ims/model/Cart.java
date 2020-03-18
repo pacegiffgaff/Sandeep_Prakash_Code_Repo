@@ -2,7 +2,9 @@ package com.giffgaff.ims.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="cart")
@@ -12,7 +14,7 @@ public class Cart {
     private Long cartId;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> products = new ArrayList<>();
+    private Set<Product> products = new HashSet<>();
 
     @OneToOne
     User user;
@@ -36,11 +38,11 @@ public class Cart {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 }
