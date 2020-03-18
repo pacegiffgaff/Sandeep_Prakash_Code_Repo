@@ -27,7 +27,6 @@
 			<ul class="sub-menu collapse" id="products" style="height: 0px;">
 				<li class="active"><a href="/product">Add product</a></li>
 				<li><a href="/viewallproducts">View All products</a></li>
-				<li><a href="#">Update product</a></li>
 			</ul>
 			<li data-toggle="collapse" data-target="#warehouse"><a href="#">Manage
 					Ware House</a></li>

@@ -9,10 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.giffgaff.ims.model.Product;
-import com.giffgaff.ims.model.RawMaterial;
+import com.giffgaff.ims.controller.form.ProductForm;
+import com.giffgaff.ims.service.InventoryService;
 import com.giffgaff.ims.service.ProductService;
 
 @Controller
@@ -22,20 +21,18 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	InventoryService inventoryService;
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
-	public ModelAndView showForm() {
+	public String showForm(Model model) {
 
-		List<RawMaterial> rawMaterialList = productService.getRawmaterialList();
+        List<String> rawMaterialList = inventoryService.getRawMaterialList();
 
-		Product product = new Product();
-		//product.setRawMaterialList(rawMaterialList);
-		for (RawMaterial rawMaterial : rawMaterialList) {
-			logger.info("\n Raw material name"+rawMaterial.getRawMaterialName());
-		}
-		
-
-		return new ModelAndView("jsp/addproduct", "product", new Product());
+		model.addAttribute("rawMaterialList", rawMaterialList);
+		model.addAttribute("product", new ProductForm());
+		return "jsp/addproduct";
 	}
 
 	/**
@@ -46,10 +43,10 @@ public class ProductController {
 	 * @return productView.jsp
 	 */
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product, Model model) {
-		logger.info("Product name" + product.getProductName() + "description" + product.getDescription()
-				+ "Product Type" + product.getProductType() + "Product Specifications" + product.getSpecifications());
-		model.addAttribute("productview", productService.addProduct(product));
+	public String addProduct(@ModelAttribute("product") ProductForm productForm, Model model) {
+		logger.info("Product name" + productForm.getProductName() + "description" + productForm.getDescription()
+				+ "Product Type" + productForm.getProductType() + "Product Specifications" + productForm.getSpecifications());
+		model.addAttribute("productview", productService.addProduct(productForm));
 
 		return "jsp/productview";
 	}

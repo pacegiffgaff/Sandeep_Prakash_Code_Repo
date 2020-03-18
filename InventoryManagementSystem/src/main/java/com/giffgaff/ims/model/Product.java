@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Product {
@@ -27,7 +26,9 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "prod_id")
-	private List<RawMaterial> rawMaterials = new ArrayList<>();
+	private List<RawMaterial> rawMaterialList = new ArrayList<>();
+
+	
 
 	@Column(name = "prod_specification")
 	private String specifications;
@@ -74,25 +75,12 @@ public class Product {
 	public void setSpecifications(String specifications) {
 		this.specifications = specifications;
 	}
-
-	public List<RawMaterial> getRawMaterials() {
-		return rawMaterials;
+	public List<RawMaterial> getRawMaterialList() {
+		return rawMaterialList;
 	}
 
-	public void setRawMaterials(List<RawMaterial> rawMaterials) {
-		this.rawMaterials = rawMaterials;
+	public void setRawMaterialList(List<RawMaterial> rawMaterialList) {
+		this.rawMaterialList = rawMaterialList;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Product product = (Product) o;
-		return Objects.equals(productName, product.productName);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(productName);
-	}
 }
