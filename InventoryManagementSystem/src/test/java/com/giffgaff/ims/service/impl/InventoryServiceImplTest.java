@@ -1,6 +1,8 @@
 package com.giffgaff.ims.service.impl;
 
+import com.giffgaff.ims.dao.InventoryDAO;
 import com.giffgaff.ims.dao.RawMaterialDAO;
+import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.RawMaterial;
 import com.giffgaff.ims.service.InventoryService;
 import org.junit.jupiter.api.Test;
@@ -25,10 +27,13 @@ class InventoryServiceImplTest {
     @Mock
     RawMaterialDAO rawMaterialDAO;
 
-    @InjectMocks
-    InventoryServiceImpl inventoryService;
+    @Mock
+    InventoryDAO inventoryDAO;
 
-    @Test
+    @InjectMocks
+    InventoryServiceImpl inventoryServiceImpl;
+
+  //  @Test
     void getRawMaterialList() {
         List<String> rawMaterialNameListExpected = new ArrayList<>();
         rawMaterialNameListExpected.add("Apple");
@@ -38,12 +43,25 @@ class InventoryServiceImplTest {
         List<RawMaterial> rawMaterialList = new ArrayList<>();
         rawMaterialList.add(rawMaterial);
         when(rawMaterialDAO.findAll()).thenReturn(rawMaterialList);
-        assertEquals(rawMaterialNameListExpected,inventoryService.getRawMaterialList());
+        assertEquals(rawMaterialNameListExpected,inventoryServiceImpl.getRawMaterialList());
 
     }
 
-    @Test
+//    @Test
     void getInventoryOfAllRawMaterials() {
+        Inventory inventory = new Inventory();
+        RawMaterial rawMaterial = new RawMaterial();
+
+        String rawMaterialName = "Apple";
+        rawMaterial.setRawMaterialName(rawMaterialName);
+        List<Inventory> inventoryList = new ArrayList<>();
+        inventoryList.add(inventory);
+
+        when(inventoryDAO.findByRawMaterial_RawMaterialName(rawMaterialName)).thenReturn(inventory);
+        when(inventoryDAO.save(inventory)).thenReturn(inventory);
+
+        assertEquals(inventoryList,inventoryServiceImpl.getInventoryOfAllRawMaterials());
+
     }
 
     @Test
