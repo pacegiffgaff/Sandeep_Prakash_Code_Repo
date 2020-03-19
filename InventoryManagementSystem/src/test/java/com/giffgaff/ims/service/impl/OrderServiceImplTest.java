@@ -1,7 +1,7 @@
 package com.giffgaff.ims.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -49,12 +49,13 @@ public class OrderServiceImplTest {
 	@Mock
 	UserRepository userRepository;
 
+	
+	  
+	 
 	@Test
 	public void test_Empty_ProductNameAndQuantityList() {
 		ProductOrderForm productOrderForm = new ProductOrderForm();
 		Map<String, Integer> productNameAndQuantityList = new HashMap<>();
-
-		productOrderForm.setProductNameAndQuantityList(productNameAndQuantityList);
 
 		orderServiceImpl.placeOrder(productOrderForm);
 
@@ -67,15 +68,14 @@ public class OrderServiceImplTest {
 		ProductOrderForm productOrderForm = new ProductOrderForm();
 		Map<String, Integer> productNameAndQuantityList = new HashMap<>();
 		productNameAndQuantityList.put("Mango", 1000);
-
-		productOrderForm.setProductNameAndQuantityList(productNameAndQuantityList);
+		productOrderForm.setOrderMap(productNameAndQuantityList);
+		
 		Authentication authentication = mock(Authentication.class);
 		doReturn(authentication).when(authenticationFacade).getAuthentication();
 		doReturn("Joy").when(authentication).getName();
 		orderServiceImpl.placeOrder(productOrderForm);
 
 		verify(authenticationFacade, times(1)).getAuthentication();
-		verify(productDAO, times(1)).findByProductName(any());
 
 	}
 
@@ -88,7 +88,6 @@ public class OrderServiceImplTest {
 		Authentication authentication = mock(Authentication.class);
 		doReturn(authentication).when(authenticationFacade).getAuthentication();
 		doReturn("Joy").when(authentication).getName();
-
 		orderServiceImpl.addProductToCart("");
 		verify(productDAO, times(1)).findByProductName(any());
 		verify(authenticationFacade, times(1)).getAuthentication();

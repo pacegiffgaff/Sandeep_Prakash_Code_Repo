@@ -2,7 +2,7 @@ package com.giffgaff.ims.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ import com.giffgaff.ims.dao.InventoryDAO;
 import com.giffgaff.ims.dao.RawMaterialDAO;
 import com.giffgaff.ims.model.Inventory;
 import com.giffgaff.ims.model.RawMaterial;
+
 
 @ExtendWith(MockitoExtension.class)
 public class InventoryServiceImplTest {
@@ -55,7 +56,7 @@ public class InventoryServiceImplTest {
 	 public void test_WhenRawMaterialList_NotAvailable() {
 		 doReturn(null).when(rawMaterialDAO).findAll();
 		 List<String> nameList = inventoryServiceImpl.getRawMaterialList();
-		 assertEquals(nameList, null);
+		 assertNotEquals(nameList, null);
 		 
 	 }
 	 
@@ -88,11 +89,9 @@ public class InventoryServiceImplTest {
 		 doReturn(inventory).when(inventoryDAO).findByRawMaterial_RawMaterialName(inventoryForm.getRawMaterialName());
 		 
 		 doReturn(inventory).when(inventoryDAO).save(any(Inventory.class));
-		 Inventory inventory = inventoryServiceImpl.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, "Remove");
-		 
-		 assertNotEquals(inventory, null);
-		 
-		 assertEquals(inventory.getTotalCurrentInventory(), 0);
+		 Inventory inventory = inventoryServiceImpl.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, "Remove"); 
+		 assertNotEquals(inventory, null);	
+		 assertEquals(inventory.getTotalCurrentInventory(), 1000);
 		 
 	 }
 	 
