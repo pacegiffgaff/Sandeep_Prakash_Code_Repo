@@ -66,14 +66,15 @@
 						<th>Product Name</th>
 						<th>Product Quantity</th>
 						<th>            </th>
-
 					</tr>
+					<c:if test="${not empty orderForm.orderMap}">
 					<c:forEach items="${orderForm.orderMap}" var="orderMap" varStatus="status">
                     		<tr>
                     			<td>${orderMap.key}</td>
                     			<td><input name="orderMap['${orderMap.key}']" value="${orderMap.value}"/></td>
                     		</tr>
                     	</c:forEach>
+                    	</c:if>
 				</table>
 				<button type="submit" class="btn btn-primary"
                 					style="margin-top: 9px" >Place Order</button>
