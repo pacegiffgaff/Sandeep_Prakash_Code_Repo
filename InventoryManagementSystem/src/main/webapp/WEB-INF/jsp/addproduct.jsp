@@ -55,17 +55,20 @@
 			<h4>Enter Product Details</h4>
 			<form:form method="POST" action="/addproduct"
 				modelAttribute="product">
-				<form:errors path="*" cssClass="errorblock" element="div" />
+
 
 				<form:label path="productName">Product Name</form:label>
+				<form:errors path="productName" cssClass="errorblock" style="color:#f71a42" />
 				<form:input type="text" path="productName" class="form-control"
 					placeholder="Enter Product Name" />
 
 				<form:label path="description">Product Description</form:label>
+				<form:errors path="description" cssClass="errorblock" style="color:#f71a42"/>
 				<form:input type="text" path="description" class="form-control"
 					placeholder="Product Description" />
 
 				<form:label path="productType">Product Catagory</form:label>
+				<form:errors path="productType" cssClass="errorblock" style="color:#f71a42" />
 				<form:select class="form-control" path="productType">
 					<form:option value="NONE" label="--- Select ---" />
 					<form:option value="Juice" label="Juice" />
@@ -76,16 +79,17 @@
 				</form:select>
 
 				<form:label path="components">Raw Material Name</form:label>
-				<form:select class="form-control" path = "components" items = "${rawMaterialList}"
-                     multiple = "true" />
+				<form:errors path="components" cssClass="errorblock" style="color:#f71a42"/>
+				<form:select class="form-control" path="components"
+					items="${rawMaterialList}" multiple="true" />
 
 				<form:label path="specifications">Product Specifications</form:label>
+				<form:errors path="specifications" cssClass="errorblock" style="color:#f71a42"/>
 				<form:input type="text" class="form-control" path="specifications"
 					placeholder="Product Specifications" />
 
 				<button type="submit" class="btn btn-primary"
 					style="margin-top: 9px">Submit</button>
-
 
 			</form:form>
 			<script type="text/javascript"

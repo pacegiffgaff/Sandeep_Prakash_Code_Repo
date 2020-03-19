@@ -57,6 +57,7 @@
 				action="/inventory">
 
 				<form:label path="rawMaterialName">Raw Material Name</form:label>
+					<form:errors path="rawMaterialName" cssClass="errorblock" style="color:#f71a42" />
 				<form:input type="text" path="rawMaterialName" class="form-control"
 					list="rawMaterialList" placeholder="Raw Material Name" />
 				<c:if test="${not empty rawMaterialList}">
@@ -67,9 +68,10 @@
 					</datalist>
 				</c:if>
 				<br />
-				<form:errors path="rawMaterialName" cssClass="error" />
+				
 
-				<form:label path="rawMaterialQuantity">Total Inventory</form:label>
+				<form:label path="rawMaterialQuantity">Total Quantity</form:label>
+				<form:errors path="rawMaterialQuantity" cssClass="errorblock" style="color:#f71a42"/>
 				<form:input type="text" path="rawMaterialQuantity"
 					class="form-control" placeholder="Total Raw Materials" />
 
