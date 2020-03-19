@@ -29,7 +29,7 @@ public class InventoryServiceImpl implements InventoryService {
             rawMaterialList.forEach(rawMaterial -> rawMaterialNameList.add(rawMaterial.getRawMaterialName()));
             return rawMaterialNameList;
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

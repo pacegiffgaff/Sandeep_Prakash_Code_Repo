@@ -46,9 +46,8 @@ public class InventoryMgmtServiceImplTest {
 		productList.add(product);
 		productList.add(productobj);
 		when(productDAO.findAll()).thenReturn(productList);
-		
-		
-		assertEquals(2, productList.size());
+
+		assertEquals(2, inventoryMgmtServiceImpl.getListOfProdcts().size());
 	}
 	
 }
