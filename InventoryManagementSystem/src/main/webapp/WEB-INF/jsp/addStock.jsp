@@ -56,11 +56,13 @@
 			<form:form method="POST" action="/stock" modelAttribute="stockForm">
 
 				<form:label path="productName">Total Stock</form:label>
+			   <form:errors path="productName" cssClass="errorblock" style="color:#f71a42" />
 			    <form:select path="productName" class="form-control" placeholder="Product Name">
                         <form:options items="${productNames}" />
                     </form:select>
 
 				<form:label path="quantity">Current Stock</form:label>
+				<form:errors path="quantity" cssClass="errorblock" style="color:#f71a42" />
 				<form:input type="text" path="quantity"
 					class="form-control" placeholder="Quantity" />
 

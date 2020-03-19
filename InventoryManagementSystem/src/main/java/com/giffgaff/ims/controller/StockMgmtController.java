@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +19,8 @@ import com.giffgaff.ims.model.Stock;
 import com.giffgaff.ims.service.StockMgmtService;
 
 import java.util.List;
+
+import javax.validation.Valid;
 
 @Controller
 public class StockMgmtController {
@@ -63,7 +67,13 @@ public class StockMgmtController {
 	 * @return
 	 */
 	@RequestMapping(value = "/stock", method = RequestMethod.POST)
-	public String updateProductInStock(@RequestParam("action") String action,@ModelAttribute StockForm stockForm, Model model) {
+	public String updateProductInStock(@RequestParam("action") String action,
+			@Valid @ModelAttribute StockForm stockForm, Model model, BindingResult bindingResult) {
+		ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "productName", "NotNull");
+		ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "quantity", "Min");
+		if (bindingResult.hasFieldErrors()) {
+			return "jsp/addStock";
+		}
 		model.addAttribute("stock", stockMgmtService.updateProductInStock(stockForm, action));
 		List<String> productNames = productService.getAllproductNames();
 		model.addAttribute("productNames",productNames);
