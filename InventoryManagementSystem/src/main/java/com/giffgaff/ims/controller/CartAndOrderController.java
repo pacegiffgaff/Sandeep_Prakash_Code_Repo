@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
+@Controller
 public class CartAndOrderController {
 
     @Autowired
     OrderService orderService;
 
     @GetMapping("/cart/{productName}")
+    @ResponseBody
     public  String addProductToCart(@PathVariable String productName){
         orderService.addProductToCart(productName);
         return "helooo";
@@ -29,18 +30,18 @@ public class CartAndOrderController {
         return new MyData(time, 'REST GET Call !!!');
     }*/
 
-    @GetMapping("orderForm")
+    @GetMapping("/cartView")
     public String showOrderForm(Model model) {
         ProductOrderForm productOrderForm= new ProductOrderForm();
         Map<String,Integer> prodQuantityMap = orderService.getProductAndQuantityOfLoggedInUser();
-        productOrderForm.setProductNameAndQuantityList(prodQuantityMap);
+        productOrderForm.setOrderMap(prodQuantityMap);
         model.addAttribute("orderForm",productOrderForm);
 
-        return "jsp/orderForm";
+        return "jsp/cartView";
     }
 
     @PostMapping("/order")
-    public Order placeOrder(@RequestBody ProductOrderForm productOrderForm) {
+    public Order placeOrder(ProductOrderForm productOrderForm) {
         orderService.placeOrder(productOrderForm);
         return null;
     }

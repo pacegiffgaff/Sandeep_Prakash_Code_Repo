@@ -10,16 +10,17 @@ import java.util.Map;
 @Component
 public class ProductOrderForm {
 
-    Map<String, Integer> productNameAndQuantityList = new HashMap<>();
+    Map<String, Integer> orderMap = new HashMap<>();
 
     public ProductOrderForm() {
     }
 
-    public Map<String, Integer> getProductNameAndQuantityList() {
-        return productNameAndQuantityList;
+
+    public void setOrderMap(Map<String, Integer> productNameAndQuantityList) {
+        this.orderMap = productNameAndQuantityList;
     }
 
-    public void setProductNameAndQuantityList(Map<String, Integer> productNameAndQuantityList) {
-        this.productNameAndQuantityList = productNameAndQuantityList;
+    public Map<String, Integer> getOrderMap() {
+        return orderMap;
     }
 }

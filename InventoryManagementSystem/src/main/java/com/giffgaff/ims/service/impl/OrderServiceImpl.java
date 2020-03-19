@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void placeOrder(ProductOrderForm productOrderForm) {
-        Map<String, Integer> productNameAndQuantityList = productOrderForm.getProductNameAndQuantityList();
+        Map<String, Integer> productNameAndQuantityList = productOrderForm.getOrderMap();
         if (productNameAndQuantityList.size() == 0) {
             return;
         }

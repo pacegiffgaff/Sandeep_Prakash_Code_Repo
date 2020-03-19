@@ -35,8 +35,8 @@
 				</ul>
 			</ul>
 
-			<li><a href="#">Production</a></li>
-			<li><a href="/order">Order Product</a></li>
+			<li><a href="/productShopping">Shop Products</a></li>
+			<li><a href="/cartView">Order Products</a></li>
 			<li><a onclick="document.forms['logoutForm'].submit()" style="color: #337AB7;">Logout</a></li>
 
 		</ul>

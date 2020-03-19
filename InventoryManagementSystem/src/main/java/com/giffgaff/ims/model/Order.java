@@ -1,5 +1,7 @@
 package com.giffgaff.ims.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -7,7 +9,8 @@ import java.util.*;
 @Table(name="cust_order")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "order_id")
     private Long orderId;
 

@@ -90,12 +90,10 @@
 	                              var productname= $('#'+prodnameid).html();
 	                              var token = $("meta[name='_csrf']").attr("content");
                                   var header = $("meta[name='_csrf_header']").attr("content");
-
-                                  alert(productname);
                                  $.get({
                                           url : '/cart'+'/'+productname,
                                           success : function(res) {
-                                              alert(res);
+                                              console.log(res);
                                           }
                                        });
 	                        });
