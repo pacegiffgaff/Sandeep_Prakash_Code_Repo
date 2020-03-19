@@ -1,123 +1,111 @@
 package com.giffgaff.ims.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.Authentication;
 
-import com.giffgaff.ims.controller.form.ProductOrderForm;
-import com.giffgaff.ims.dao.CartDAO;
-import com.giffgaff.ims.dao.OrderDAO;
-import com.giffgaff.ims.dao.ProductDAO;
-import com.giffgaff.ims.dao.UserRepository;
-import com.giffgaff.ims.model.Cart;
-import com.giffgaff.ims.model.Product;
-import com.giffgaff.ims.model.User;
-import com.giffgaff.ims.service.IAuthenticationFacade;
+import com.giffgaff.ims.controller.form.InventoryForm;
+import com.giffgaff.ims.dao.InventoryDAO;
+import com.giffgaff.ims.dao.RawMaterialDAO;
+import com.giffgaff.ims.model.Inventory;
+import com.giffgaff.ims.model.RawMaterial;
+
 
 @ExtendWith(MockitoExtension.class)
-public class OrderServiceImplTest {
-
-	@InjectMocks
-	OrderServiceImpl orderServiceImpl;
-
-	@Mock
-	OrderDAO orderDAO;
-
-	@Mock
-	ProductDAO productDAO;
-
-	@Mock
-	CartDAO cartDAO;
-
-	@Mock
-	IAuthenticationFacade authenticationFacade;
-
-	@Mock
-	UserRepository userRepository;
+public class InventoryServiceImplTest {
 
 	
-	  
+	@InjectMocks
+	private InventoryServiceImpl inventoryServiceImpl;
+	
+	@Mock
+    InventoryDAO inventoryDAO;
+    @Mock
+    RawMaterialDAO rawMaterialDAO;
+    
+    static List<RawMaterial> rawMaterialList = new ArrayList<>();
+    static InventoryForm inventoryForm = new InventoryForm();
+    static Inventory inventory = new Inventory();
+    @BeforeAll
+    public static void init() {
+    	
+		 RawMaterial rm1 = new RawMaterial();
+		 rm1.setRawMaterialId((long) 12345);
+		 rm1.setRawMaterialName("Raw material");
+		 rawMaterialList.add(rm1);
+		 
+		 inventoryForm.setRawMaterialName("Mango");
+		 inventoryForm.setRawMaterialQuantity(1000);
+		 
+		 inventory.setTotalCurrentInventory(1000);
+		 inventory.setHistoryTotal(100);
+    }
+    
+	 @Test
+	 public void test_WhenRawMaterialList_NotAvailable() {
+		 doReturn(null).when(rawMaterialDAO).findAll();
+		 List<String> nameList = inventoryServiceImpl.getRawMaterialList();
+		 assertNotEquals(nameList, null);
+		 
+	 }
 	 
-	@Test
-	public void test_Empty_ProductNameAndQuantityList() {
-		ProductOrderForm productOrderForm = new ProductOrderForm();
-		Map<String, Integer> productNameAndQuantityList = new HashMap<>();
-
-		orderServiceImpl.placeOrder(productOrderForm);
-
-		verify(authenticationFacade, times(0)).getAuthentication();
-
-	}
-
-	@Test
-	public void test_NotEmpty_ProductNameAndQuantityList() {
-		ProductOrderForm productOrderForm = new ProductOrderForm();
-		Map<String, Integer> productNameAndQuantityList = new HashMap<>();
-		productNameAndQuantityList.put("Mango", 1000);
-		productOrderForm.setOrderMap(productNameAndQuantityList);
-		
-		Authentication authentication = mock(Authentication.class);
-		doReturn(authentication).when(authenticationFacade).getAuthentication();
-		doReturn("Joy").when(authentication).getName();
-		orderServiceImpl.placeOrder(productOrderForm);
-
-		verify(authenticationFacade, times(1)).getAuthentication();
-
-	}
-
-	@Test
-	public void test_addProductToCart() {
-
-		Product product = new Product();
-		doReturn(product).when(productDAO).findByProductName(any());
-
-		Authentication authentication = mock(Authentication.class);
-		doReturn(authentication).when(authenticationFacade).getAuthentication();
-		doReturn("Joy").when(authentication).getName();
-		orderServiceImpl.addProductToCart("");
-		verify(productDAO, times(1)).findByProductName(any());
-		verify(authenticationFacade, times(1)).getAuthentication();
-		verify(cartDAO, times(1)).findByUser_Username(any());
-	}
-
-	@Test
-	public void test_getCartOfLoggedInUser() {
-		Authentication authentication = mock(Authentication.class);
-		doReturn(authentication).when(authenticationFacade).getAuthentication();
-		doReturn("Joy").when(authentication).getName();
-
-		orderServiceImpl.getCartOfLoggedInUser();
-		verify(authenticationFacade, times(1)).getAuthentication();
-		verify(cartDAO, times(1)).findByUser_Username(any());
-	}
-
-	@Test
-	public void test_getProductAndQuantityOfLoggedInUser() {
-		Authentication authentication = mock(Authentication.class);
-		doReturn(authentication).when(authenticationFacade).getAuthentication();
-		doReturn("Joy").when(authentication).getName();
-
-		Cart cart = new Cart();
-		cart.setCartId(100L);
-		doReturn(cart).when(cartDAO).findByUser_Username(any());
-
-		Cart outputCart = orderServiceImpl.getCartOfLoggedInUser();
-		verify(authenticationFacade, times(1)).getAuthentication();
-		verify(cartDAO, times(1)).findByUser_Username(any());
-		assertEquals(outputCart.getCartId(), 100L);
-	}
+	 @Test
+	 public void test_WhenRawMaterialList_Available() {
+		 doReturn(rawMaterialList).when(rawMaterialDAO).findAll();
+		 List<String> nameList = inventoryServiceImpl.getRawMaterialList();
+		 
+		 assertEquals(nameList.size(), 1);
+		 
+		 assertEquals(nameList.get(0), "Raw material");
+		 
+	 }
+		 
+	 @Test
+	 public void test_WithNullInventory() {
+		 doReturn(null).when(inventoryDAO).findByRawMaterial_RawMaterialName(inventoryForm.getRawMaterialName());
+		 
+		 doReturn(inventory).when(inventoryDAO).save(any(Inventory.class));
+		 Inventory inventory = inventoryServiceImpl.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, null);
+		 
+		 assertNotEquals(inventory, null);
+		 
+		 assertEquals(inventory.getTotalCurrentInventory(), 1000);
+		 
+	 }
+	 
+	 @Test
+	 public void test_WithInventory_Remove() {
+		 doReturn(inventory).when(inventoryDAO).findByRawMaterial_RawMaterialName(inventoryForm.getRawMaterialName());
+		 
+		 doReturn(inventory).when(inventoryDAO).save(any(Inventory.class));
+		 Inventory inventory = inventoryServiceImpl.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, "Remove"); 
+		 assertNotEquals(inventory, null);	
+		 assertEquals(inventory.getTotalCurrentInventory(), 1000);
+		 
+	 }
+	 
+	 @Test
+	 public void test_WithInventory_Add() {
+		 doReturn(inventory).when(inventoryDAO).findByRawMaterial_RawMaterialName(inventoryForm.getRawMaterialName());
+		 
+		 doReturn(inventory).when(inventoryDAO).save(any(Inventory.class));
+		 Inventory inventory = inventoryServiceImpl.addNewRawmaterialOrUpdateRawMaterialQuantity(inventoryForm, "ADD");
+		 
+		 assertNotEquals(inventory, null);
+		 
+		 assertEquals(inventory.getTotalCurrentInventory(), 2000);
+		 
+	 }
+	 
 }
