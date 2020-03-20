@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "ProductOrder")
 @Table(name="prod_order")
 public class ProductOrder {
 
     @EmbeddedId
-    private ProductOrderId productOrderId;
+    private ProductOrderId id = new ProductOrderId();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productId")
@@ -32,9 +32,6 @@ public class ProductOrder {
         this.order = order;
     }
 
-    public ProductOrderId getProductOrderId() {
-        return productOrderId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -51,8 +48,12 @@ public class ProductOrder {
         return Objects.hash(product, order);
     }
 
-    public void setProductOrderId(ProductOrderId productOrderId) {
-        this.productOrderId = productOrderId;
+    public ProductOrderId getId() {
+        return id;
+    }
+
+    public void setId(ProductOrderId id) {
+        this.id = id;
     }
 
     public int getQuantity() {

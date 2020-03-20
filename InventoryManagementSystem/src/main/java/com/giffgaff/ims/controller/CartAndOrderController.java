@@ -23,12 +23,7 @@ public class CartAndOrderController {
         return "helooo";
     }
 
-    /*@RequestMapping(value='/{time}', method = RequestMethod.GET)
-    public @ResponseBody MyData getMyData(
-            @PathVariable long time) {
 
-        return new MyData(time, 'REST GET Call !!!');
-    }*/
 
     @GetMapping("/cartView")
     public String showOrderForm(Model model) {

@@ -14,7 +14,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	@Column(name = "prod_id")
-	private Long productId;
+	private Long id;
 
 	@Column(name = "prod_name")
 	private String productName;
@@ -38,11 +38,11 @@ public class Product {
 	}
 
 	public Long getProductId() {
-		return productId;
+		return id;
 	}
 
 	public void setProductId(Long productId) {
-		this.productId = productId;
+		this.id = productId;
 	}
 
 	public String getProductName() {
@@ -76,6 +76,7 @@ public class Product {
 	public void setSpecifications(String specifications) {
 		this.specifications = specifications;
 	}
+
 	public List<RawMaterial> getRawMaterialList() {
 		return rawMaterialList;
 	}

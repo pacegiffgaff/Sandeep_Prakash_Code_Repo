@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "order_id")
-    private Long orderId;
+    private Long id;
 
     @OneToMany(
             mappedBy = "order",
@@ -32,11 +32,11 @@ public class Order {
     }
 
     public Long getOrderId() {
-        return orderId;
+        return id;
     }
 
     public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+        this.id = orderId;
     }
 
     public List<ProductOrder> getProducts() {
@@ -76,12 +76,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(orderId, order.orderId);
+        return Objects.equals(id, order.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId);
+        return Objects.hash(id);
     }
 
     public void addProduct(Product product, int quantity) {
