@@ -1,6 +1,6 @@
 package com.giffgaff.ims.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -9,16 +9,17 @@ import java.util.Optional;
 
 import com.giffgaff.ims.dao.ProductDAO;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.giffgaff.ims.model.Product;
 import com.giffgaff.ims.service.impl.InventoryMgmtServiceImpl;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class InventoryMgmtServiceImplTest {
 
 

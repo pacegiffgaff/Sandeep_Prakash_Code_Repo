@@ -42,7 +42,7 @@ public class ProductController {
 	/**
 	 * Product information will be stored in Database
 	 * 
-	 * @param product
+	 * @param productForm
 	 * @param model
 	 * @return productView.jsp
 	 */
