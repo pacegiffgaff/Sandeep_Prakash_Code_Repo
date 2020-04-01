@@ -117,6 +117,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+				<plugin>
+					<groupId>org.jfrog.buildinfo</groupId>
+					<artifactId>artifactory-maven-plugin</artifactId>
+					<version>2.2.1</version>
+					<inherited>false</inherited>
+					<executions>
+						<execution>
+							<id>build-info</id>
+							<goals>
+								<goal>publish</goal>
+							</goals>
+							<configuration>
+								<!--<deployProperties>
+									<gradle>awesome</gradle>
+									<review.team>qa</review.team>
+								</deployProperties>-->
+								<publisher>
+									<contextUrl>http://localhost:8081/artifactory/</contextUrl>
+									<username>admin</username>
+									<password>pass@word1</password>
+									<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+								</publisher>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 		</plugins>
 	</build>
 
