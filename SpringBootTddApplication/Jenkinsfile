@@ -23,10 +23,8 @@ node {
                             bat "./mvnw.cmd test -Punit"
                         }
                     } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*UnitTest.xml'])
                         throw err
                     }
-                    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*UnitTest.xml'])
 
                 }
             }, 'Integration tests': {
@@ -38,10 +36,8 @@ node {
                             bat "./mvnw.cmd test -Pintegration"
                         }
                     } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*IntegrationTest.xml'])
                         throw err
                     }
-                    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*IntegrationTest.xml'])
                 }
             }
 
